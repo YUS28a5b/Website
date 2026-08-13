@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Cho - About Me</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* ============================================================
+       About Me Page CSS — (컴포넌트 외 본문 전용 스타일)
+    ============================================================ */
+    
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Nanum Myeongjo', 'Georgia', 'Times New Roman', sans-serif;
+        color: #1A1A18;
+        background-color: #F7F6F2;
+        line-height: 1.9;
+        margin: 0;
+        padding: 0;
+        padding-bottom: 6rem; /* 푸터를 위한 하단 여백 */
+    }
+    
+    /* ── Animations (배너가 뜬 직후부터 순차적으로 등장하도록 시간 조정) ── */
+    .reveal {
+        opacity: 0;
+        animation: fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+        will-change: transform, opacity;
+    }
+    
+    .reveal-1 { animation-delay: 0.30s; }
+    .reveal-2 { animation-delay: 0.45s; }
+    .reveal-3 { animation-delay: 0.60s; }
+    .reveal-4 { animation-delay: 0.75s; }
+    
+    @keyframes fadeUp {
+        0% { opacity: 0; transform: translateY(18px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideDown {
+        0% { opacity: 0; transform: translateY(-12px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Main Container ── */
+    .about-container {
+        width: 100%;
+        max-width: 1000px;
+        padding: 0 2rem;
+        margin: 0 auto;
+    }
+    
+    .about-layout {
+        display: block;
+        width: 100%;
+    }
+    
+    .profile-media-block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 3rem;
+    }
+    
+    /* ── Profile image and icon container ── */
+    .profile-image-wrapper {
+        width: 300px;
+        max-height: 500px;
+        overflow: hidden;
+        background-color: #D8D6D0;
+    }
+    
+    .profile-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: grayscale(20%) contrast(1.1);
+    }
+    
+    .linkedin-link {
+        display: inline-flex;
+        margin-top: 1.5rem;
+        margin-left: 1.25rem;
+        color: #8A8880;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+    
+    .linkedin-link:hover {
+        color: #1A1A18;
+        transform: translateY(-3px);
+    }
+    
+    .linkedin-icon {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .about-tldr {
+        font-size: 1rem;
+        color: #8A8880;
+        margin-bottom: 3rem;
+        line-height: 1.6;
+    }
+    
+    /* ── Dividers ── */
+    .rule-divider {
+        width: 100%;
+        height: 1px;
+        background-color: #D8D6D0;
+        margin: 4rem 0 1.5rem 0;
+    }
+    
+    /* ── Storytelling (Magazine Format) ── */
+    .about-subtitle {
+        font-size: 1.8rem;
+        font-weight: 700;
+        font-style: italic;
+        color: #1A1A18;
+        margin: 2.5rem 0;
+        padding: 1.5rem 2rem;
+        border-left: 4px solid #8A8880;
+        background-color: rgba(0,0,0,0.03);
+        line-height: 1.6;
+        letter-spacing: -0.02em;
+    }
+    
+    .about-subtitle::before,
+    .about-subtitle::after {
+        font-size: 3rem;
+        color: #1A1A18;
+        opacity: 0.6;
+        line-height: 0;
+        font-family: 'Times New Roman', serif;
+    }
+    
+    .about-subtitle::before { content: '“'; margin-right: 0.4rem; vertical-align: -0.2rem; }
+    .about-subtitle::after { content: '”'; margin-left: 0.3rem; vertical-align: -0.2rem; }
+    
+    .about-story, .unique-perspective, .beyond-the-clinic {
+        font-size: 1.1rem;
+        line-height: 1.85;
+    }
+    
+    .about-story p, .unique-perspective p, .beyond-the-clinic p {
+        margin-bottom: 1.6rem;
+        letter-spacing: -0.01em;
+        text-align: justify;
+    }
+    
+    /* ── Read More (Expandable) Section ── */
+    .expandable-story summary::-webkit-details-marker { display: none; }
+    .expandable-story summary { list-style: none; }
+    
+    .expandable-story{
+        margin: 2.5rem 0 2.5rem 0;
+        width: fit-content;
+        display: block;
+        background-color: transparent;
+        border: none;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .expandable-story[open] {
+        width: 100%;
+        background-color: rgba(0,0,0,0.02);
+        border-radius: 8px;
+        border: 1px solid #D8D6D0;
+        border-left: 4px solid #D8D6D0;
+    }
+    
+    .expand-btn {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #1A1A18;
+        padding: 0.75rem 1.5rem;
+        border: 1px solid #1A1A18;
+        background-color: transparent;
+        transition: all 0.3s ease;
+    }
+    
+    .expand-btn:hover {
+        background-color: rgba(0,0,0,0.02);
+    }
+    
+    .expand-btn::after {
+        content: '+';
+        margin-left: 0.8rem;
+        font-size: 1rem;
+        font-weight: 400;
+        transition: transform 0.3s ease;
+    }
+    
+    .expandable-story[open] .expand-btn {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 1.5rem 2.5rem;
+        border: none;
+        border-bottom: 1px solid #D8D6D0;
+    }
+    
+    .expandable-story[open] .expand-btn::after {
+        transform: rotate(45deg);
+        margin-left: 0;
+    }
+    
+    .expandable-story[open] .expand-content {
+        margin: 1rem 2rem 1rem 2rem;
+        opacity: 1;
+        transform: translateY(0);
+        animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    
+    .quote-text {
+        font-style: italic;
+        color: #1A1A18;
+        padding-left: 1rem;
+        opacity: 0.8;
+    }
+    
+    .quote-text::before, .quote-text::after {
+        font-size: 3rem;
+        color: #1A1A18;
+        opacity: 0.6;
+        line-height: 0;
+        font-family: 'Times New Roman', serif;
+        font-weight: bold;
+    }
+    
+    .quote-text::before { content: '“'; margin-right: 0.4rem; vertical-align: -1rem; }
+    .quote-text::after { content: '”'; margin-left: 0.1rem; vertical-align: -1rem; }
+    
+    .expand-content p::first-letter {
+        font-size: inherit !important;
+        float: none !important;
+        margin: 0 !important;
+    }
+    
+    .expand-story {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        letter-spacing: -0.02em;
+        opacity: 0.8;
+    }
+    
+    .about-story p:nth-of-type(2):first-letter {
+        font-size: 3rem;
+        float: left;
+        line-height: 0.8;
+        margin-right: 0.5em;
+        margin-top: 0.2em;
+    }
+    
+    /* ── Credentials Timeline ── */
+    .professional-summary h2 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        border-bottom: none; 
+        padding-bottom: 0;
+    }
+    
+    .timeline {
+        border-left: 1px solid #D8D6D0;
+        padding-left: 2rem;
+        margin-left: 1rem;
+    }
+    
+    .timeline-item {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+    
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -2.35rem;
+        top: 0.3rem;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #F7F6F2;
+        border: 1px solid #1A1A18;
+    }
+    
+    .timeline-year {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #8A8880;
+        margin-bottom: 0.3rem;
+    }
+    
+    .timeline-content {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .timeline-content strong {
+        font-size: 1.1rem;
+        display:block;
+        margin-bottom: 0.2rem;
+    }
+    
+    /* ── Section Titles ── */
+    .unique-perspective h2,
+    .beyond-the-clinic h2 {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #1A1A18;
+        margin-top: 3rem;
+        margin-bottom: 1.2rem;
+        letter-spacing: -0.02em;
+        width: fit-content;
+        position: relative;
+        padding-bottom: 0.2rem;
+        border-bottom: none;
+    }
+    
+    .unique-perspective h2::after,
+    .beyond-the-clinic h2::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 110%;
+        height: 2px;
+        background-color: #8A8880;
+        opacity: 0.6;
+    }
+    
+    .unique-perspective-img,
+    .beyond-the-clinic-img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        max-width: 600px;
+        margin-bottom: 1.5rem;
+        filter: grayscale(10%) contrast(1.05);
+    }
+    
+    /* ── Responsive Adjustments ── */
+    @media (max-width: 600px) {
+        .profile-image-wrapper { width: 150px; }
+        .linkedin-link { margin-left: 1rem; }
+        .timeline { padding-left: 1.5rem; margin-left: 0.5rem; }
+        .timeline-item::before { left: -1.85rem; }
+    }
+    
+    @media (min-width: 700px) {
+        .profile-media-block { float: left; width: 300px; margin-right: 3rem; margin-bottom: 2rem; }
+        .professional-summary { overflow: hidden; }
+        
+        .unique-perspective-img {
+            float: right;
+            width: 40%;
+            max-width: 350px;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+        }
+        .unique-perspective { overflow: hidden; }
+        
+        .beyond-the-clinic-img {
+            float: left;
+            width: 40%;
+            max-width: 350px;
+            margin-right: 2rem;
+            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+        }
+        .beyond-the-clinic { overflow: hidden; }
+    }
+  </style>
+</head>
+
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <script>
+        // About Me 전용 배너 설정
+        window.bannerConfig = {
+            title: "Dr. Wooyong Leo Cho",
+            subtitle: "Expertise from diversity, broad backgrounds, & varied disciplines",
+            media: [
+                'images/profile-dr-cho.jpg' // About Me 페이지 배경으로 깔릴 미디어를 지정하세요.
+            ]
+        };
+    </script>
+    <div id="banner-placeholder"></div>
+
+    <main class="about-container">
+        <div class="about-layout">
+            
+            <div class="profile-media-block reveal reveal-1">
+                <div class="profile-image-wrapper">
+                    <img src="about_img/profile-dr-cho.jpg" alt="Dr. Cho Profile Picture" class="profile-img" />
+                </div>
+
+                <a href="https://www.linkedin.com/in/leochoaud" class="linkedin-link" target="_blank" rel="noopener noreferrer" title="Connect on LinkedIn">
+                    <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5c0-1.191-.009-2.724-1.661-2.724s-1.918 1.299-1.918 2.637v5h-3v-10h2.881v1.367h.041c.401-.759 1.381-1.561 2.846-1.561 3.042 0 3.604 2.002 3.604 4.599v5z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <section class="professional-summary reveal reveal-2">
+                <h2>Professional Summary:</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024 - Present</div>
+                        <div class="timeline-content">
+                            <strong>Stanford Healthcare</strong>
+                            Doctor of Audiology (Au.D.)
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2023-2024</div>
+                        <div class="timeline-content">
+                            <strong>American Hearing and Balance - Torrance and Long Beach</strong>
+                            Clinical Internship - Required Professional Experience (RPE)
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2022-2023</div>
+                        <div class="timeline-content">
+                            <strong>University of Southern California (USC)</strong>
+                            Clinical Externship
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2021-2022</div>
+                        <div class="timeline-content">
+                            <strong>California State University, Los Angeles (CSULA)</strong>
+                            President at Student Academy of Audiology (SAA) Chapter
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="rule-divider"></div>
+            
+            <article class="about-tldr reveal reveal-3">
+                <p class="about-tldr-subtitle">[TL;DR]</p>
+                <p>Dr. Wooyong Leo Cho transitioned from a background in Hollywood sound design to audiology, motivated by the desire to help people reconnect with the world around them. He earned his doctorate to bridge the gap between complex audio technology and genuine human connection. Today, Dr. Cho leverages his unique technical background to provide transparent, patient-centered care, ensuring his patients can engage more fully with their environment. His practice is built on the belief that a deep understanding of sound is essential for reclaiming one's quality of life.</p>
+            </article>
+
+            <article class="about-story reveal reveal-4">
+                <p class="about-subtitle">Sound brings life to pictures. Hearing brings connection to life.</p>
+                <p>Born in Busan, South Korea, in 1992, Dr. Cho’s life has been a dynamic journey defined by a constant pursuit of meaningful connection and excellence. Moving to Ohio in 2008 and later graduating from high school in Illinois, he quickly learned the value of communication while navigating unfamiliar environments; imagine him using body language to express his hunger. A fascination with the mechanics of audio led him first to Goucher College as a computer music major, and eventually to the Savannah College of Art and Design (SCAD), where he transferred in 2013 to study sound design. </p>
+                <p>His trajectory took an unexpected turn in 2014 when he returned to South Korea for mandatory military service, in which he was recognized for his audio engineering background. Following a medical discharge in 2015, he transitioned to a civil service role—a pivotal period where he cultivated profound empathy and compassion by serving seniors and marginalized populations facing various medical difficulties. Returning to the U.S. in 2016 to complete his degree, he truly began to bloom as a sound designer. By the time of his graduation in 2018, his dedication to the craft was recognized with regional (Southeast Emmy), national (Adobe), and international (Red Dot) awards for excellence; simultaneously, he built an extensive portfolio of independent projects in Korea. </p>
+                <p>This success propelled him to Hollywood, where he worked as a sound designer for motion pictures, immersing himself in the immense power and importance of sound itself. However, the most transformative moment of his career occurred not in a studio but through pivotal experiences that redefined his purpose. Driven by this calling, he began his formal studies in audiology at California State University, Los Angeles. </p>
+                
+                <details class="expandable-story">
+                    <summary class="expand-btn">Read more about Dr. Cho's journey</summary>
+                    <div class="expand-content">
+                        <p class="quote-text">Looking back, I see that I was always moved by compassion. I became a sound designer because I wanted to share my excitement when listening to well-designed sound effects, and now I want to provide a foundation where everyone can have the opportunity to experience what I felt. Also, sound brings back memory, and it is mind-breaking to see that being taken away.</p>
+                        <div class="expand-story">
+                            <p>During his time as a sound designer in Hollywood, he spent countless hours editing audio and working on frequency spectral layers. Yet, as he shared his works, he began to encounter a recurring, humbling realization: not everyone experienced the soundscape as he did. He observed that for some, the intricate textures and immersive quality of the sound he crafted were lost, revealing the vast disparity in how individuals perceive the sound of the world around them. </p>
+                            <p>This awareness only deepened during his subsequent volunteer work at church, where he witnessed members with hearing loss struggling to follow conversations, slowly withdrawing into isolation. Eager to bridge the gap, he instinctively turned to his professional toolkit—adjusting soundboards and applying post-production techniques to improve clarity. However, he quickly encountered the hard limits of mechanical amplification, realizing that technical fixes could not truly restore the human connection that was slipping away. </p>
+                            <p>The turning point, in fact, began much earlier, during a celebratory trip to Disneyland. While watching the nightly fireworks, he observed a diverse crowd—from young children lost in wonder to older adults moved to tears by nostalgic melodies. It was a visceral reminder of how deeply sound anchors our memories and connects us to the present. Yet, amidst the collective joy, he was struck by a poignant realization: for those with hearing impairment, this shared emotional experience remained out of reach. Driven by a desire to restore authentic human connection rather than merely simulating audio, he shifted his focus entirely to pursue a Doctorate in Audiology at California State University, Los Angeles. </p>
+                        </div>
+                    </div>
+                </details>
+                
+                <p>Today, Dr. Cho actively engages with the community to spread awareness about hearing loss and balance issues via seminars and events. His practice is rooted in a singular, driving belief: every individual deserves the best quality of life as much as possible, and good hearing is one of the most influential factors. He firmly believes that equipping patients with an accurate, balanced understanding of the mechanisms behind their conditions empowers them to cope effectively with their hearing difficulties. </p>
+                <p>In his practice, education and transparent communication form the core pillars of his practice. Driven by a keen interest in academics and emerging science, he runs a blog to decode new research, share clinical opinions, and review the latest technologies. He personally tests hearing aids to understand how they sound and feel in daily life. Fundamentally, Dr. Cho asserts that medical inequality often stems from a disproportionate distribution of information. Because of this, his counseling sessions are strictly built on transparency—ensuring there is no hidden information or withheld facts, only clear, unbiased guidance for every patient. </p>
+            </article>
+            
+            <article class="unique-perspective">
+                <h2>A Unique Perspective</h2>
+                <img src="about_img/unique-perspective-mixer.png" alt="Dr. Cho operating a sound mixer" class="unique-perspective-img" />
+                <p>His ability to blend advanced technical precision with deep human compassion sets him apart as a clinician. His transition from an award-winning sound designer to an audiologist provides him with a distinct, mechanical understanding of auditory environments that few others possess. When patients describe their struggles—whether it is the ambient chaos of a crowded restaurant, the difficulty of isolating voices in distant rooms, or the frustration of navigating busy streets—Dr. Cho does not just hear the clinical complaint; he can mentally simulate the exact acoustic environment they are navigating. Having spent years crafting intricate soundscapes for motion pictures, he possesses an intimate, visceral grasp of both the nuances of sound and the realistic limitations of amplification technology. This background ensures that his approach to audiology is rooted in empathy; he understands that hearing loss is not merely a technical deficit but a significant barrier to connection. By combining the rigorous standards of an audio engineer with a compassionate, patient-centered focus, he offers guidance that is as technically accurate as it is deeply personal, ensuring his patients feel heard, understood, and effectively equipped to engage with the world around them. </p>
+            </article>
+            
+            <article class="beyond-the-clinic">
+                <h2>Beyond the Clinic</h2>
+                <img src="about_img/beyond-the-clinic-camera.JPG" alt="Dr. Cho camera beyond the clinic" class="beyond-the-clinic-img" />
+                <p>Dr. Cho finds balance and inspiration in a life rich with connection and creativity. He treasures time spent with his family and has recently begun exploring the golf course—a new interest he is cultivating alongside his wife. While he doesn’t keep pets of his own, he has a great fondness for dogs and cats and occasionally fosters kittens, enjoying the chance to nurture and socialize them. His creative spirit remains a vibrant force, whether he is capturing the world through photography, producing music, or picking up the guitar or piano. He also continues to explore the world through field recording, always listening for the next interesting soundscape. For Dr. Cho, these personal passions—grounded in family, art, and nature—fuel the energy and empathy he brings to his practice every day. </p>
+            </article>
+
+            <section class="journal-invite-section reveal reveal-4" style="text-align: center; margin: 4rem 0 2rem 0; padding: 3rem 2rem; background: rgba(0,0,0,0.02); border: 1px solid #D8D6D0; border-radius: 4px;">
+    <h3 style="font-size: 1.3rem; font-weight: 700; color: #1A1A18; margin-bottom: 0.8rem;">Curious about my personal journey?</h3>
+    <p style="font-size: 0.95rem; color: #8A8880; margin-bottom: 1.8rem; line-height: 1.6;">I share unfiltered progress notes, self-development reflections, and personal thoughts beyond the clinic.</p>
+    <a href="personal-journal.html" class="expand-btn" style="text-decoration: none;">
+        Read Personal Journal &rarr;
+    </a>
+</section>
+            <div class="rule-divider"></div>
+            
+        </div>
+    </main>
+
+    <div id="site-footer-placeholder"></div>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+            window.componentPath = "../StructureAssest/"; 
+        </script>
+        
+    <script src="../StructureAssest/includes.js"></script>
+
+    </body>
+</html>

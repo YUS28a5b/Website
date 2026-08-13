@@ -1,0 +1,56 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+
+  /* 푸터 내부 모든 요소에 나눔명조 강제 적용 */
+  .footer-meta, .footer-meta * {
+    font-family: 'Nanum Myeongjo', serif !important;
+  }
+
+  /* 푸터 기본 스타일 (#8A8880 직접 지정) */
+  .footer-meta {
+    position: fixed;
+    left: 2rem;
+    right: 2rem;
+    bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+    color: #8A8880; /* 순수 6자리 웜 그레이 색상 */
+    opacity: 0;     /* 초기 숨김 상태 */
+    text-transform: uppercase;
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  /* 조립 완료 후 페이드인 애니메이션 */
+  #footer-placeholder.loaded .footer-meta {
+    animation: footerFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes footerFadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    100% {
+      opacity: 0.7; /* 화면 하단에 은은하게 들어오는 투명도 */
+      transform: translateY(0);
+    }
+  }
+
+  /* 반응형 모바일 여백 고정 */
+  @media (max-width: 640px) {
+    .footer-meta {
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+    }
+  }
+</style>
+
+<div class="footer-meta">
+  <span>© 2026 Dr. Cho. All rights reserved.</span>
+  <span>Dr. Cho</span>
+</div>
