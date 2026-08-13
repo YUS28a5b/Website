@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="only light" />
+  <title>Dr. Cho</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/00_landing_page_style.css" />
+</head>
+<body>
+ 
+  <div class="container">
+    <div class="rule-top"></div>
+ 
+    <div class="flag-prompt">
+      <img class="flag" src="http://flagcdn.com/w80/us.png" alt="English" />
+      <span class="flag-divider">/</span>
+      <img class="flag" src="http://flagcdn.com/w80/kr.png" alt="한글" />
+    </div>
+ 
+    <div class="lang-options">
+      <button class="lang-btn en" onclick="selectLang('en')">English</button>
+      <span class="lang-divider">&mdash;</span>
+      <button class="lang-btn kr" onclick="selectLang('kr')">한글</button>
+    </div>
+ 
+    <label class="pref-row">
+      <input type="checkbox" id="save-pref" />
+      <span>Save this setting and don't ask me again</span>
+    </label>
+ 
+    <div class="rule-bottom"></div>
+  </div>
+ 
+  <span class="corner-mark">Dr. Cho</span>
+ 
+  <script src="js/00_landing_page_script.js"></script>
+</body>
+</html>
