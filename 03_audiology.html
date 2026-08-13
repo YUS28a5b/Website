@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Cho - Audiology</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* ============================================================
+       Audiology Page CSS — (컴포넌트 외 본문 전용 스타일)
+    ============================================================ */
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Nanum Myeongjo', 'Georgia', 'Times New Roman', sans-serif;
+        color: #1A1A18;
+        background-color: #F7F6F2;
+        line-height: 1.9;
+        margin: 0;
+        padding: 0;
+        padding-bottom: 6rem; /* 푸터를 위한 하단 여백 */
+    }
+
+    /* ── Animations (배너가 뜬 직후부터 순차적으로 등장) ── */
+    .reveal {
+        opacity: 0;
+        animation: fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+        will-change: transform, opacity;
+    }
+
+    .reveal-1 { animation-delay: 0.30s; }
+    .reveal-2 { animation-delay: 0.45s; }
+    .reveal-3 { animation-delay: 0.60s; }
+    .reveal-4 { animation-delay: 0.75s; }
+
+    @keyframes fadeUp {
+        0% { opacity: 0; transform: translateY(18px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── 본문 섹션 공통 ── */
+    .content-section {
+        height: auto;
+        padding: 20px 20px;
+        max-width: 800px;
+        margin: 0 auto;    
+    }
+
+    .philosophy-of-care {
+        padding-bottom: 0;
+    }
+
+    h2 {
+        font-size: 2rem;
+        font-weight: 400;
+        border-bottom: 1px solid #D8D6D0;
+        padding-bottom: 12px;
+        margin-bottom: 30px;
+    }
+
+    .philosophy-of-care-text {
+        font-size: 1.1rem;
+        color: #1A1A18;
+        margin-bottom: 0;
+    }
+
+    /* ── What Sets Us Apart (Carousel) ── */
+    .special-carousel-section {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .carousel-container {
+        display: grid;
+        margin-top: 15px;
+    }
+
+    .special-slide {
+        grid-area: 1 / 1;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+    }
+
+    .special-slide.active {
+        opacity: 1;
+        visibility: visible;
+        z-index: 2;
+    }
+
+    .special-slide h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0 0 8px 0;
+        color: #1A1A18;
+    }
+
+    .special-slide p {
+        font-size: 1.05rem;
+        color: #1A1A18;
+        margin: 0;
+        line-height: 1.8;
+    }
+
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        margin-top: 25px;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 1px solid #1A1A18;
+        background-color: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        opacity: 0.3;
+    }
+
+    .dot:hover {
+        opacity: 0.7;
+    }
+
+    .dot.active {
+        background-color: #1A1A18;
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    /* ── 탭(Tab) & Service List ── */
+    .tab-container {
+        display: flex;
+        gap: 30px;
+        margin-bottom: 35px;
+        border-bottom: 1px solid #D8D6D0;
+    }
+
+    .tab-btn {
+        background: none;
+        border: none;
+        font-size: 1.05rem;
+        padding: 10px 0;
+        cursor: pointer;
+        color: #8A8880;
+        transition: all 0.3s ease;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+        font-family: inherit;
+    }
+
+    .tab-btn:hover {
+        color: #1A1A18;
+    }
+
+    .tab-btn.active {
+        color: #1A1A18;
+        font-weight: bold;
+        border-bottom: 2px solid #1A1A18;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .active-content {
+        display: block;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .service-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 25px;
+    }
+
+    .service-list li {
+        background: rgba(255, 255, 255, 0.6); 
+        margin-bottom: 12px;
+        padding: 18px 24px;
+        border: 1px solid #D8D6D0;
+        border-radius: 4px;
+    }
+
+    .service-desc {
+        display: block;
+        font-size: 0.9rem;
+        opacity: 0.85;
+        margin-top: 4px;
+    }
+
+    .service-tag {
+        font-size: 0.8rem;
+        font-weight: normal;
+        color: #8A8880;
+        margin-left: 6px;
+    }
+
+    .service-note {
+        display: block;
+        font-size: 0.8rem;
+        opacity: 0.7;
+        font-style: italic;
+        margin-top: 6px;
+    }
+
+    /* ── Contact Section (푸터 위 예약 버튼 영역) ── */
+    .contact-section {
+        text-align: center;
+        padding: 90px 20px 50px 20px;
+        background-color: #1A1A18;
+        color: #F7F6F2;
+    }
+
+    .contact-section h2 {
+        color: #F7F6F2;
+        border-bottom: 1px solid rgba(216, 214, 208, 0.3);
+        display: inline-block;
+    }
+
+    .contact-button {
+        display: block;
+        margin: 0 auto;
+        background: #F7F6F2;
+        color: #1A1A18;
+        padding: 14px 36px;
+        border: 1px solid #F7F6F2;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        margin-top: 25px;
+        transition: all 0.3s ease;
+        font-family: inherit;
+    }
+
+    .contact-button:hover {
+        background: transparent;
+        color: #F7F6F2;
+    }
+  </style>
+</head>
+
+<body>
+    <div id="header-placeholder"></div>
+
+    <script>
+        // Audiology 전용 배너 설정
+        window.bannerConfig = {
+            title: "Dr. Cho Audiology",
+            subtitle: "Understanding the Science of Hearing",
+            media: [
+                'videos/clip1.mp4',
+                'videos/clip2.mp4',
+                'videos/clip3.mp4'
+            ]
+        };
+    </script>
+    <div id="banner-placeholder"></div>
+
+    <main>
+        <section class="content-section philosophy-of-care reveal reveal-1">
+            <h2>Philosophy of Care</h2>
+            <p class="philosophy-of-care-text">Medical inequality often stems from a lack of clear, accessible information. At Dr. Cho Audiology, we believe in sharing honest and unbiased medical knowledge. Our ultimate goal is simple yet profound: to be a clinic where patients do not have to return for the same issue. We accomplish this goal by equipping you with an accurate understanding of your condition. Here, we partner with you to make the best decisions for your life and hearing health.</p>
+        </section>
+
+        <section class="content-section special-carousel-section reveal reveal-2">
+            <h2>What Sets Us Apart</h2>
+
+            <div class="carousel-container">
+                <div class="special-slide active">
+                    <h3>Clinical Excellence at Stanford</h3>
+                    <p>Bringing the top-tier medical level provided at Stanford Healthcare from exceptional experience. Acknowledged Fellow of American Academy of Audiology, Certificate holder for tinnitus management and supervising preceptor.</p>
+                </div>
+
+                <div class="special-slide">
+                    <h3>Acoustic Precision & Award-Winning Sound Engineering</h3>
+                    <p>Uncompromised technical mastery of sound mechanics, acoustics, and signal processing is guaranteed. Recognized sound excellence by Red Dot, Adobe, and regional Emmy. </p>
+                </div>
+
+                <div class="special-slide">
+                    <h3>Cutting-Edge Technical Knowledge</h3>
+                    <p>Continuously updated with the latest scientific research, emerging diagnostic protocols, and modern hearing device technology.</p>
+                </div>
+
+                <div class="special-slide">
+                    <h3>Transparent & Unbiased Guidance</h3>
+                    <p>Rooted in medical equality-sharing honest, clear, and complete information so you can make informed choices without hesitation.</p>
+                </div>
+            </div>
+
+            <div class="carousel-dots">
+                <span class="dot active" onclick="goToSlide(0)"></span>
+                <span class="dot" onclick="goToSlide(1)"></span>
+                <span class="dot" onclick="goToSlide(2)"></span>
+                <span class="dot" onclick="goToSlide(3)"></span>
+            </div>
+        </section>
+
+        <section class="content-section reveal reveal-3">
+            <h2>Services</h2>
+            
+            <div class="tab-container">
+                <button class="tab-btn active" onclick="openTab(event, 'Patients')">For Patients</button>
+                <button class="tab-btn" onclick="openTab(event, 'Providers')">For Referring Providers</button>
+            </div>
+
+            <div id="Patients" class="tab-content active-content">
+                <h3>Comprehensive & Transparent Care</h3>
+                <p>Every individual’s auditory path is unique. We go beyond basic testing to provide thorough diagnostic evaluations and personalized solutions. Our process is built on clarity and education, ensuring you feel completely confident in your hearing care plan.</p>
+                <ul class="service-list">
+                    <li>
+                        <strong>Comprehensive Hearing Evaluations</strong>
+                        <span class="service-desc">In-depth air, bone, and speech audiometry to determine the type and degree of your hearing loss.</span>
+                    </li>
+                    <li>
+                        <strong>Standard Middle Ear Testing (Tymp and Acoustic Reflex)</strong>
+                        <span class="service-desc">Routine tympanometry to evaluate eardrum integrity and general middle ear function.</span>
+                    </li>
+                    <li>
+                        <strong>Advanced Specialized Testing <span class="service-tag">(If Clinically Indicated)</span></strong>
+                        <span class="service-desc">Extended-high frequency audiometry and Patulous Eustachian Tube Dysfunction evaluations for complex symptoms.</span>
+                        <span class="service-note">*Recommended based on individual clinical needs; additional evaluation fees may apply.</span>
+                    </li>
+                    <li>
+                        <strong>Evidence-Based Hearing Aid Fitting</strong>
+                        <span class="service-desc">Objective, real-ear verified hearing aid programming tailored to individual's unique acoustic needs and lifestyle.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="Providers" class="tab-content">
+                <h3>Collaborative Diagnostic Partnership</h3>
+                <p>We partner with healthcare professionals to deliver precise, objective audiological diagnostics. Through timely communication and thorough clinical reporting, we complement your practice to ensure comprehensive patient care.</p>
+                <ul class="service-list">
+                    <li>
+                        <strong>Diagnostic Audiology & Tympanometry</strong>
+                        <span class="service-desc">Thorough baseline evaluations using standardized clinical protocols for accurate diagnosis.</span>
+                    </li>
+                    <li>
+                        <strong>Advanced Specialized Testing</strong>
+                        <span class="service-desc">Offering extended high-frequency audiometry and Patulous Eustachian Tube Dysfunction testing for complex diagnostic cases.</span>
+                    </li>
+                    <li>
+                        <strong>Detailed and Updated Technology Consultations</strong>
+                        <span class="service-desc">Transparent, clinically driven hearing aid recommendations focusing purely on patient efficacy.</span>
+                    </li>
+                    <li>
+                        <strong>Collaborative Care with Referring Providers</strong>
+                        <span class="service-desc">Clear, actionable diagnostic findings delivered promptly to support your medical management.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <footer class="contact-section reveal reveal-4">
+            <h2>Contact Us</h2>
+            <button class="contact-button" onclick="window.location.href='contact.html'">Schedule an Appointment</button>
+        </footer>
+    </main>
+
+    <div id="site-footer-placeholder"></div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="includes.js"></script>
+
+    <script>
+        // 탭 기능
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.style.display = 'none';
+                content.classList.remove('active-content');
+            });
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            const selectedTab = document.getElementById(tabName);
+            selectedTab.style.display = 'block';
+
+            setTimeout(() => {
+                selectedTab.classList.add('active-content');
+            }, 10);
+
+            evt.currentTarget.classList.add('active');
+        }
+
+        // 차별점 슬라이더 (What Sets Us Apart)
+        let currentSlideIdx = 0;
+        let slideInterval = null;
+
+        function showSlide(idx) {
+            const slides = document.querySelectorAll('.special-slide');
+            const dots = document.querySelectorAll('.carousel-dots .dot');
+
+            if (slides.length === 0) return;
+
+            if (idx >= slides.length) currentSlideIdx = 0;
+            else if (idx < 0) currentSlideIdx = slides.length - 1;
+            else currentSlideIdx = idx;
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));       
+            
+            slides[currentSlideIdx].classList.add('active');
+            dots[currentSlideIdx].classList.add('active');
+        }
+
+        // 버튼 클릭 연동
+        window.goToSlide = function(idx) {
+            showSlide(idx);
+            resetSlideTimer();
+        };
+
+        function startSlideTimer() {
+            slideInterval = setInterval(() => {
+                showSlide(currentSlideIdx + 1);
+            }, 5000);
+        }
+
+        function resetSlideTimer() {
+            clearInterval(slideInterval);
+            startSlideTimer();
+        }
+
+        // 슬라이더 타이머 시작
+        startSlideTimer();
+    </script>
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Cho - Blog</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* ============================================================
+       Blog Page CSS — (컴포넌트 외 본문 전용 스타일)
+    ============================================================ */
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Nanum Myeongjo', 'Georgia', 'Times New Roman', serif;
+        color: #1A1A18;
+        background-color: #F7F6F2;
+        line-height: 1.9;
+        margin: 0;
+        padding: 0;
+    }
+
+    button, input, select, textarea, a {
+        font-family: 'Nanum Myeongjo', 'Georgia', 'Times New Roman', serif;
+    }
+
+    /* ── Animations (배너가 뜬 직후부터 순차적으로 등장) ── */
+    .reveal {
+        opacity: 0;
+        animation: fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+        will-change: transform, opacity;
+    }
+
+    /* 💡 타이밍 동기화 (배너 등장 후 본문과 컨택트 영역 순차 등장) */
+    .reveal-1 { animation-delay: 0.30s; } 
+    .reveal-2 { animation-delay: 0.45s; } 
+
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Blog Layout & Sidebar ── */
+    .blog-container {
+        max-width: 1050px;
+        margin: 0 auto;
+        padding: 0 20px 60px 20px;
+    }
+
+    .sidebar-toggle-bar {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #D8D6D0;
+    }
+
+    .hamburger-btn {
+        background: transparent;
+        border: 1px solid #D8D6D0;
+        border-radius: 4px;
+        padding: 5px 12px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #1A1A18;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .hamburger-btn:hover {
+        background: #1A1A18;
+        color: #F7F6F2;
+        border-color: #1A1A18;
+    }
+
+    .hamburger-icon {
+        font-size: 0.95rem;
+        line-height: 1;
+    }
+
+    .blog-main-layout {
+        display: flex;
+        gap: 36px;
+        align-items: flex-start;
+        transition: all 0.4s ease;
+    }
+
+    /* 사이드바 스타일 */
+    .category-sidebar {
+        width: 200px;
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid #D8D6D0;
+        border-radius: 4px;
+        padding: 16px 16px; 
+        transition: all 0.35s ease;
+        overflow: hidden;
+    }
+
+    .category-sidebar.collapsed {
+        width: 0;
+        padding: 0;
+        border: none;
+        opacity: 0;
+        pointer-events: none;
+        margin-right: -36px;
+    }
+
+    .sidebar-title {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #8A8880;
+        margin: 0 0 10px 0;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #D8D6D0;
+    }
+
+    .category-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 4px; 
+    }
+
+    .category-item {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #8A8880;
+        text-decoration: none;
+        display: block;
+        padding: 4px 8px; 
+        border-radius: 3px;
+        transition: all 0.25s ease;
+    }
+
+    .category-item:hover {
+        color: #1A1A18;
+        background: rgba(26, 26, 24, 0.05);
+        padding-left: 12px;
+    }
+
+    .category-item.active {
+        color: #1A1A18;
+        font-weight: 700;
+        background: rgba(255, 255, 255, 0.8);
+        border-left: 2px solid #1A1A18;
+    }
+
+    /* 우측 게시글 스타일 */
+    .journal-section {
+        flex-grow: 1;
+        width: 100%;
+    }
+
+    .journal-entry {
+        background: rgba(255, 255, 255, 0.6);
+        padding: 2.2rem 2rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid #D8D6D0;
+        border-radius: 4px;
+        transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .journal-entry:hover {
+        transform: translateY(-2px);
+        border-color: #1A1A18;
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    .journal-entry:last-child {
+        margin-bottom: 0;
+    }
+
+    .journal-meta {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.03em; 
+        color: #8A8880;
+        margin-bottom: 0.9rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1rem;
+        text-transform: uppercase;
+    }
+
+    .journal-category {
+        color: #1A1A18;
+    }
+
+    .journal-category::before {
+        content: '•';
+        margin-right: 0.6rem;
+        color: #D8D6D0;
+    }
+
+    .journal-title {
+        font-size: 1.85rem;
+        font-weight: 700;
+        color: #1A1A18;
+        letter-spacing: -0.02em;
+        margin: 0 0 0.9rem 0;
+        line-height: 1.3;
+    }
+
+    .journal-excerpt {
+        font-size: 1.02rem;
+        color: #1A1A18;
+        line-height: 1.8;
+        margin-bottom: 1.3rem;
+    }
+
+    .read-more-btn {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #1A1A18;
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .read-more-btn:hover {
+        opacity: 0.6;
+    }
+
+    .read-more-btn .arrow {
+        margin-left: 0.4rem;
+        transition: margin-left 0.3s ease;
+    }
+
+    .read-more-btn:hover .arrow {
+        margin-left: 0.7rem;
+    }
+
+    @media (max-width: 850px) {
+        .blog-main-layout {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .category-sidebar {
+            width: 100%;
+        }
+
+        .category-sidebar.collapsed {
+            width: 100%;
+            height: 0;
+            padding: 0;
+            margin-right: 0;
+            margin-bottom: 0;
+        }
+    }
+
+    /* ── Contact Section (뉴스레터 구독) ── */
+    .contact-section {
+        text-align: center;
+        padding: 90px 20px 50px 20px;
+        background-color: #1A1A18;
+        color: #F7F6F2;
+    }
+
+    .contact-section h2 {
+        font-size: 2rem;
+        font-weight: 400;
+        padding-bottom: 12px;
+        margin-bottom: 30px;
+        color: #F7F6F2;
+        border-bottom: 1px solid rgba(216, 214, 208, 0.3);
+        display: inline-block;
+    }
+
+    .contact-button {
+        display: block;
+        margin: 0 auto;
+        background: #F7F6F2;
+        color: #1A1A18;
+        padding: 14px 36px;
+        border: 1px solid #F7F6F2;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        margin-top: 25px;
+        transition: all 0.3s ease;
+    }
+
+    .contact-button:hover {
+        background: transparent;
+        color: #F7F6F2;
+    }
+  </style>
+</head>
+
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <script>
+        // 블로그 리스트 메인 전용 배너 설정
+        window.bannerConfig = {
+            title: "Journal & Insights",
+            subtitle: "Thoughts on audiology, sound engineering, and a life in between.",
+            media: [
+                'images/blog-banner.jpg' // 블로그 배경에 어울리는 이미지/영상을 세팅하세요!
+            ]
+        };
+    </script>
+    <div id="banner-placeholder"></div>
+
+    <main class="blog-container reveal reveal-1">
+        <div class="sidebar-toggle-bar">
+            <button class="hamburger-btn" id="sidebarToggleBtn" aria-label="Toggle Categories">
+                <span class="hamburger-icon">☰</span>
+                <span>Categories</span>
+            </button>
+        </div>
+
+        <div class="blog-main-layout">
+            <aside class="category-sidebar" id="categorySidebar">
+                <h3 class="sidebar-title">Categories</h3>
+                <ul class="category-list">
+                    <li><a href="#" class="category-item active" data-category="all">All Posts</a></li>
+                    <li><a href="#" class="category-item" data-category="audiology">Audiology</a></li>
+                    <li><a href="#" class="category-item" data-category="hearing-aids">Hearing aids</a></li>
+                    <li><a href="#" class="category-item" data-category="anatomy">Anatomy</a></li>
+                    <li><a href="#" class="category-item" data-category="examinations">Examinations</a></li>
+                </ul>
+            </aside>
+
+            <section class="journal-section">
+                <article class="journal-entry" data-category="audiology">
+                    <div class="journal-meta">
+                        <span class="journal-date">OCTOBER 15th, 2024</span>
+                        <span class="journal-category">Audiology</span>
+                    </div>
+                    <h2 class="journal-title">Why Transparency in Hearing Care Matters More Than Ever</h2>
+                    <p class="journal-excerpt">In an era where information is abundant but often unclear, transparency in hearing care is more crucial than ever. Patients deserve to understand their conditions, the available treatments, and the potential outcomes. This blog post explores the importance of open communication between healthcare providers and patients in the field of audiology.</p>
+                    <a href="04_blog_post_20241015_transparency_in_hearing_care.html" class="read-more-btn">Read Article <span class="arrow">→</span></a>
+                </article>
+
+                <article class="journal-entry" data-category="hearing-aids">
+                    <div class="journal-meta">
+                        <span class="journal-date">OCTOBER 28th, 2024</span>
+                        <span class="journal-category">Hearing Aids</span>
+                    </div>
+                    <h2 class="journal-title">The Common Questions About Hearing Aids</h2>
+                    <p class="journal-excerpt">Hearing aids have become increasingly sophisticated, but many people still have questions about how they work, what to expect, and how to maintain them. This post addresses the most common questions about hearing aids.</p>
+                    <a href="04_blog_post_20241028_common_questions_about_hearing_aids.html" class="read-more-btn">Read Article <span class="arrow">→</span></a>
+                </article>
+            </section>
+        </div>
+    </main>
+
+    <footer class="contact-section reveal reveal-2">
+        <h2>Read more on our insights?</h2>
+        <button class="contact-button" onclick="window.location.href='contact.html'">Subscribe to Newsletter</button>
+    </footer>
+
+    <div id="site-footer-placeholder"></div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="includes.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebar = document.getElementById('categorySidebar');
+            const toggleBtn = document.getElementById('sidebarToggleBtn');
+            const categoryItems = document.querySelectorAll('.category-item');
+            const journalEntries = document.querySelectorAll('.journal-entry');
+
+            function initSidebarState() {
+                if (window.innerWidth <= 850) {
+                    sidebar.classList.add('collapsed');
+                } else {
+                    sidebar.classList.remove('collapsed');
+                }
+            }
+
+            initSidebarState();
+
+            toggleBtn.addEventListener('click', function () {
+                sidebar.classList.toggle('collapsed');
+            });
+
+            categoryItems.forEach(item => {
+                item.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    categoryItems.forEach(el => el.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const selectedCategory = this.getAttribute('data-category');
+
+                    journalEntries.forEach(entry => {
+                        const entryCategory = entry.getAttribute('data-category');
+                        if (selectedCategory === 'all' || entryCategory === selectedCategory) {
+                            entry.style.display = 'block';
+                        } else {
+                            entry.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
