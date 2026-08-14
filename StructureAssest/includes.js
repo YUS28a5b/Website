@@ -18,11 +18,35 @@ document.addEventListener("DOMContentLoaded", function() {
             
             headerPlaceholder.innerHTML = data;
             
-            // 헤더 내부 메뉴 자동 활성화 로직 (현재 페이지에 밑줄 긋기)
-            const navLinks = headerPlaceholder.querySelectorAll(".nav-links a");
+            // 💡 [핵심 추가] 폴더 깊이에 맞춰 헤더 링크 주소를 자동으로 보정합니다!
+            const basePath = path.replace("StructureAssest/", ""); 
+            
+            // htmls 폴더 안에 들어있는 서브 페이지 목록 지정
+            const subPages = ["about.html", "audiology.html", "blog.html", "personal-journal.html", "music.html", "photography.html", "youtube.html", "contact.html"];
+            
+            const navLinks = headerPlaceholder.querySelectorAll(".nav-links a, .site-footer-logo");
+            
             navLinks.forEach(link => {
-                const href = link.getAttribute("href");
-                if (href === currentPath || (currentPath.includes("blog") && href.includes("blog"))) {
+                let href = link.getAttribute("href");
+                
+                // 외부 링크나 단순 앵커가 아닐 경우에만 경로 재계산
+                if (href && !href.startsWith("http") && !href.startsWith("#") && !href.includes("mailto:")) {
+                    
+                    // 만약 링크가 서브 페이지 중 하나를 향하고 있다면, htmls/ 경로를 중간에 끼워 넣습니다.
+                    // (단, index.html 같은 메인 대문은 htmls 안에 없으므로 제외됩니다)
+                    if (subPages.some(page => href.includes(page))) {
+                        // header.html에 htmls/가 안 적혀 있다면 강제로 붙여줌
+                        if (!href.includes("htmls/")) {
+                            href = "htmls/" + href;
+                        }
+                    }
+                    
+                    link.setAttribute("href", basePath + href);
+                    href = basePath + href; // 업데이트된 href 저장
+                }
+                
+                // 헤더 내부 메뉴 자동 활성화 로직 (보정된 주소 기준으로 비교)
+                if (href.includes(currentPath) || (currentPath.includes("blog") && href.includes("blog"))) {
                     link.classList.add("active");
                 } else {
                     link.classList.remove("active");
