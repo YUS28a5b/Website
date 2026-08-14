@@ -1,14 +1,43 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // 💡 0. 경로 자동 맞춤 마법사 (HTML 파일에서 적어둔 이정표를 가져옵니다)
-    // HTML 파일에 window.componentPath가 있으면 그 경로를 쓰고, 없으면 기본값("")을 씁니다.
+    // 💡 0. 경로 자동 맞춤 마법사
     const path = window.componentPath || "";
-
-    // 💡 1. 현재 브라우저에 떠있는 파일명 자동 감지 (예: "02_about.html")
     const currentPath = window.location.pathname.split("/").pop() || "index.html";
-
+    const basePath = path.replace("StructureAssest/", ""); 
+    const subPages = ["about.html", "audiology.html", "blog.html", "personal-journal.html", "music.html", "photography.html", "youtube.html", "contact.html"];
 
     // ==========================================================
-    // 🛠️ 1. 공통 헤더(Header) 조립 파트
+    // 🛠️ [핵심] 만능 링크 보정기 (Header, Footer 모두 재사용)
+    // ==========================================================
+    function fixLinks(container) {
+        const links = container.querySelectorAll("a"); // 컨테이너 안의 모든 <a> 태그 선택
+        
+        links.forEach(link => {
+            let href = link.getAttribute("href");
+            
+            // 외부 링크나 앵커가 아닐 경우에만 경로 재계산
+            if (href && !href.startsWith("http") && !href.startsWith("#") && !href.includes("mailto:")) {
+                
+                // 1. 기존에 지저분하게 붙어있을 수 있는 ../ 나 htmls/ 를 싹 청소합니다 (중복 방지)
+                let cleanHref = href.replace(/^(\.\.\/)+/, "").replace("htmls/", "");
+                
+                // 2. 서브 페이지라면 htmls/ 를 끼워 넣습니다
+                if (subPages.some(page => cleanHref.includes(page))) {
+                    cleanHref = "htmls/" + cleanHref;
+                }
+                
+                // 3. 최종적으로 현재 폴더 깊이(basePath)를 앞에 붙여줍니다
+                link.setAttribute("href", basePath + cleanHref);
+                
+                // 4. 헤더 네비게이션 Active 효과 로직
+                if (cleanHref.includes(currentPath) || (currentPath.includes("blog") && cleanHref.includes("blog"))) {
+                    link.classList.add("active");
+                }
+            }
+        });
+    }
+
+    // ==========================================================
+    // 🛠️ 1. 공통 헤더(Header) 조립
     // ==========================================================
     fetch(path + "header.html")
         .then(response => response.text())
@@ -18,42 +47,9 @@ document.addEventListener("DOMContentLoaded", function() {
             
             headerPlaceholder.innerHTML = data;
             
-            // 💡 [핵심 추가] 폴더 깊이에 맞춰 헤더 링크 주소를 자동으로 보정합니다!
-            const basePath = path.replace("StructureAssest/", ""); 
-            
-            // htmls 폴더 안에 들어있는 서브 페이지 목록 지정
-            const subPages = ["about.html", "audiology.html", "blog.html", "personal-journal.html", "music.html", "photography.html", "youtube.html", "contact.html"];
-            
-            const navLinks = headerPlaceholder.querySelectorAll(".nav-links a, .site-footer-logo");
-            
-            navLinks.forEach(link => {
-                let href = link.getAttribute("href");
-                
-                // 외부 링크나 단순 앵커가 아닐 경우에만 경로 재계산
-                if (href && !href.startsWith("http") && !href.startsWith("#") && !href.includes("mailto:")) {
-                    
-                    // 만약 링크가 서브 페이지 중 하나를 향하고 있다면, htmls/ 경로를 중간에 끼워 넣습니다.
-                    // (단, index.html 같은 메인 대문은 htmls 안에 없으므로 제외됩니다)
-                    if (subPages.some(page => href.includes(page))) {
-                        // header.html에 htmls/가 안 적혀 있다면 강제로 붙여줌
-                        if (!href.includes("htmls/")) {
-                            href = "htmls/" + href;
-                        }
-                    }
-                    
-                    link.setAttribute("href", basePath + href);
-                    href = basePath + href; // 업데이트된 href 저장
-                }
-                
-                // 헤더 내부 메뉴 자동 활성화 로직 (보정된 주소 기준으로 비교)
-                if (href.includes(currentPath) || (currentPath.includes("blog") && href.includes("blog"))) {
-                    link.classList.add("active");
-                } else {
-                    link.classList.remove("active");
-                }
-            });
+            // 💡 조립이 끝나면 만능 링크 보정기 실행!
+            fixLinks(headerPlaceholder);
 
-            // 헤더 스르륵 나타나는 페이드인 애니메이션
             setTimeout(() => {
                 headerPlaceholder.classList.add("loaded");
             }, 10);
@@ -62,13 +58,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     // ==========================================================
-    // 🛠️ 2. 다이나믹 배너(Banner) 조립 & 미디어 플레이어 파트
+    // 🛠️ 2. 다이나믹 배너(Banner) 조립 & 미디어 플레이어
     // ==========================================================
     fetch(path + "banner.html")
         .then(response => response.text())
         .then(data => {
             const bannerPlaceholder = document.getElementById("banner-placeholder");
-            if (!bannerPlaceholder) return; // 배너가 필요 없는 페이지는 패스
+            if (!bannerPlaceholder) return; 
 
             bannerPlaceholder.innerHTML = data;
             
@@ -76,14 +72,12 @@ document.addEventListener("DOMContentLoaded", function() {
             let firstMediaElement = null;
 
             if (config) {
-                // HTML에서 설정한 제목과 소제목을 배너에 밀어 넣기
                 document.getElementById("banner-title").textContent = config.title;
                 document.getElementById("banner-subtitle").textContent = config.subtitle;
 
                 const bgContainer = bannerPlaceholder.querySelector(".banner-bg-container");
                 let currentIdx = 0;
 
-                // 사진/영상 무한 릴레이 재생 로직
                 function playNextMedia(isFirstLoad = false) {
                     if (!config.media || config.media.length === 0) return;
 
@@ -91,10 +85,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     const isVideo = file.toLowerCase().endsWith(".mp4") || file.toLowerCase().endsWith(".webm");
                     
                     const newMedia = document.createElement(isVideo ? "video" : "img");
-                    
-                    // 💡 미디어 경로 앞에도 상위 폴더 조정이 필요할 수 있으므로
-                    // 만약 file 경로가 http로 시작하지 않고, HTML 파일 위치 조정이 필요하다면 아래처럼 처리
-                    // (단, 기존 설정에서 미디어 경로는 html 파일 위치 기준이므로 그대로 둠)
                     newMedia.src = file; 
                     newMedia.className = "banner-media"; 
                     
@@ -110,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function() {
                             newMedia.play().catch(e => console.log("비디오 재생 에러:", e));
                         }
                     } else {
-                        // 사진일 경우 5초 뒤에 다음 사진으로 넘김
                         setTimeout(() => {
                             currentIdx = (currentIdx + 1) % config.media.length;
                             playNextMedia();
@@ -120,7 +109,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     bgContainer.appendChild(newMedia);
                     setTimeout(() => newMedia.classList.add("active"), 50);
 
-                    // 이전 미디어 부드럽게 삭제
                     const oldMediaList = bgContainer.querySelectorAll(".banner-media");
                     if (oldMediaList.length > 1) {
                         const oldMedia = oldMediaList[0];
@@ -136,7 +124,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 playNextMedia(true);
             }
 
-            // 배너 페이드인 및 영상 재생 시작 (헤더가 뜨고 0.15초 뒤)
             setTimeout(() => {
                 bannerPlaceholder.classList.add("loaded");
                 if (firstMediaElement && firstMediaElement.tagName === "VIDEO") {
@@ -148,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     // ==========================================================
-    // 🛠️ 3. 본문 하단 메가 사이트맵 푸터(Site-Footer) 조립 (선택적)
+    // 🛠️ 3. 본문 하단 메가 사이트맵 푸터(Site-Footer) 조립
     // ==========================================================
     fetch(path + "site-footer.html")
         .then(response => response.text())
@@ -156,6 +143,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const siteFooterPlaceholder = document.getElementById("site-footer-placeholder");
             if(siteFooterPlaceholder) {
                 siteFooterPlaceholder.innerHTML = data;
+                
+                // 💡 푸터가 조립되면 여기도 만능 링크 보정기 실행!
+                fixLinks(siteFooterPlaceholder);
             }
         })
         .catch(error => console.error("메가 푸터 로딩 에러:", error));
@@ -172,7 +162,9 @@ document.addEventListener("DOMContentLoaded", function() {
             
             footerPlaceholder.innerHTML = data;
             
-            // 푸터 스르륵 나타나는 페이드인 애니메이션
+            // 💡 최하단 푸터도 예외 없이 링크 보정!
+            fixLinks(footerPlaceholder);
+            
             setTimeout(() => {
                 footerPlaceholder.classList.add("loaded");
             }, 10);
