@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plans for the Future - Dr. Cho</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================================
+       Personal Journal Post CSS — (컴포넌트 외 본문 전용 스타일)
+    ============================================================ */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Nanum Myeongjo', serif !important;
+    }
+
+    body {
+      background-color: #F7F6F2;
+      color: #1A1A18;
+      line-height: 1.9; 
+      overflow-x: hidden;
+      padding-bottom: 6rem;
+    }
+
+    /* ── Animations ── */
+    .reveal {
+      opacity: 0;
+      animation: fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+      will-change: transform, opacity;
+    }
+    
+    .reveal-1 { animation-delay: 0.30s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Post Layout ── */
+    .post-article {
+      max-width: 760px;
+      margin: 0 auto 6rem;
+      padding: 3rem 2.5rem;
+      border: 1px solid #D8D6D0;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.62);
+      box-shadow: 0 12px 34px rgba(26, 26, 24, 0.05);
+      position: relative;
+      z-index: 10;
+      text-align: left; 
+    }
+
+    .post-header {
+      padding-bottom: 1.25rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #D8D6D0;
+    }
+
+    .post-meta {
+      font-size: 0.78rem;
+      letter-spacing: 0.03em;
+      color: #8A8880;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem; 
+    }
+
+    .post-category {
+      color: #1A1A18;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .post-category::before {
+      content: '•';
+      margin-right: 0.6rem;
+      color: #D8D6D0;
+      font-weight: normal;
+    }
+
+    .post-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #1A1A18;
+      margin: 1.5rem 0 1rem; 
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    .post-intro {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #8A8880;
+      margin: 0; 
+    }
+
+    .post-content {
+      font-size: 1.05rem;
+      line-height: 1.75; 
+      color: #222;
+    }
+
+    .post-content p {
+      margin: 0 0 1.5rem;
+    }
+    
+    /* ── 본문 내 소제목 및 리스트 스타일 추가 ── */
+    .post-content h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #1A1A18;
+      margin: 2.5rem 0 1rem;
+      letter-spacing: -0.01em;
+    }
+    
+    .post-content ul {
+      margin: 0 0 1.5rem 1.5rem;
+      padding-left: 0.5rem;
+    }
+    
+    .post-content li {
+      margin-bottom: 0.5rem;
+      color: #222;
+    }
+
+    .post-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #D8D6D0;
+    }
+
+    .back-link, .next-link {
+      color: #1A1A18;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: opacity 0.3s ease;
+    }
+
+    .back-link:hover, .next-link:hover {
+      opacity: 0.6;
+    }
+
+    @media (max-width: 640px) {
+      .post-article { padding: 2rem 1.25rem; }
+      .post-title { font-size: 1.7rem; }
+      .post-content, .post-intro { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <script>
+      window.bannerConfig = {
+          title: "Process Note",
+          subtitle: "Traces of where I started, grew, and became myself.",
+          media: [
+              '../../videos/clip1.mp4',       
+              '../../images/clinic1.jpg',     
+              '../../videos/clip2.mp4'        
+          ]
+      };
+  </script>
+  <div id="banner-placeholder"></div>
+
+  <article class="post-article reveal reveal-1">
+    
+    <header class="post-header">
+      <div class="post-meta">
+        <span>August 16th, 2026</span>
+        <span class="post-category">Process Note</span>
+      </div>
+      <h1 class="post-title">Plans for the Future</h1>
+      <p class="post-intro">Building an Ultimate Hub</p>
+    </header>
+
+    <div class="post-content">
+      <p>The primary goal of this website—and the Audiology page in particular—is to serve as the ultimate hub for audiology.</p>
+      
+      <p>I firmly believe that the best clinician is someone who can drive the best outcomes with the fewest visits. My aim is to become a clinician whom a patient only needs to see once for a single issue. However, I know this is not always practical because patients may present with more than one issue, and a care plan may require several visits.</p>
+      
+      <p>The biggest factor that can reduce this number of visits and appointment time is a foundational understanding of the condition and its pathophysiology. That is where this webpage will contribute. It will serve as a great resource for patients. I will try to build each post and page with solid evidence and references to ensure accuracy and reliability.</p>
+      
+      <p>Currently, my page lacks a lot of things. I mean a lot. So… let’s see where I can improve. If you have any suggestions, feel free to contact me.</p>
+      
+      <h3>Areas for Improvement:</h3>
+      <ul>
+        <li>Resource Page</li>
+        <li>YouTube Channel Page</li>
+        <li>About Me: Profile image broken link</li>
+        <li>Audiology Main Page: Banner background videos linkage</li>
+        <li>About Me: Banner background images (or videos)</li>
+        <li>Blog: Banner background images (or videos)</li>
+        <li>Personal Blog post: Next Entry Btn mechanism</li>
+        <li>Personal Blog post: Previous Entry Btn add</li>
+        <li>Personal Blog post: Back to Journal list btn add</li>
+      </ul>
+
+      <h3>This Week’s Work (2026 Week 34):</h3>
+      <ul>
+        <li>Added page numbers for Blog and Personal Journal</li>
+        <li>Added category filtering feature in Personal journal</li>
+        <li>Created Javascript for personal journal data management</li>
+    <h4>Debug:</h4>
+        <li>Navigation from a personal journal entry to main pages in the header was broken. The issue has been resolved.</li>
+
+    </ul>
+    </div>
+
+    <footer class="post-footer">
+      <a href="../../htmls/personal-journal.html" class="back-link">← Back to Personal Journal</a>
+      <a href="#" class="next-link">Next Entry →</a>
+    </footer>
+  </article>
+
+  <div id="site-footer-placeholder"></div>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+      window.componentPath = "../../StructureAssest/"; 
+  </script>
+  <script src="../../StructureAssest/includes.js"></script>
+
+</body>
+</html>
