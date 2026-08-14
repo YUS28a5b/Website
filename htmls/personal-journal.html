@@ -148,9 +148,9 @@
         // 개인 저널 전용 배너 설정
         window.bannerConfig = {
             title: "Personal Journal",
-            subtitle: "Progress notes, self-development, & reflections by Wooyong Leo Cho.",
+            subtitle: "Process notes, self-development, & reflections by Wooyong Leo Cho.",
             media: [
-                'images/journal-banner.jpg' // 개인적인 서재, 노트, 커피, 작업실 등 개인 저널 분위기의 사진/영상
+                '../images/journal-banner.jpg' // 사진 경로가 상위에 있다면 ../ 추가
             ]
         };
     </script>
@@ -161,12 +161,13 @@
 
             <article class="journal-card">
                 <div class="journal-card-meta">
-                    <span>AUGUST 12th, 2026</span>
-                    <span class="journal-tag">Progress Note</span>
+                    <span>AUGUST 15th, 2026</span>
+                    <span class="journal-tag">Proceess Note</span>
                 </div>
-                <h2 class="journal-card-title">Refactoring My Digital Space & Modular Web Design</h2>
-                <p class="journal-card-excerpt">Lately, I’ve been streamlining my personal website into clean, reusable JavaScript modules. Transitioning from complex frameworks back to lightweight HTML/CSS felt remarkably liberating...</p>
-                <a href="#" class="journal-read-link">Read Journal Entry <span class="arrow">&rarr;</span></a>
+                <h2 class="journal-card-title">Finally, Hello World</h2>
+                <p class="journal-card-excerpt">I’ve tried multiple website builders for my blogs and websites in the past. The only one that really appealed to me was Squarespace, mainly because of its clean UI. But I was never truly comfortable...</p>
+                
+                <a href="../Blog_Personal/1/hello-world.html" class="journal-read-link">Read Journal Entry <span class="arrow">&rarr;</span></a>
             </article>
 
             <article class="journal-card">
@@ -197,8 +198,8 @@
     <div id="footer-placeholder"></div>
 
     <script>
-            window.componentPath = "../StructureAssest/"; 
-        </script>
+        window.componentPath = "../StructureAssest/"; 
+    </script>
         
     <script src="../StructureAssest/includes.js"></script>
 
