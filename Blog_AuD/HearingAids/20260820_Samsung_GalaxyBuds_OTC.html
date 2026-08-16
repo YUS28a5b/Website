@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samsung Approved for Hearing Aids? - Dr. Cho</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================================
+       Post Page CSS — (컴포넌트 외 본문 전용 스타일)
+    ============================================================ */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Nanum Myeongjo', serif !important;
+    }
+
+    body {
+      background-color: #F7F6F2;
+      color: #1A1A18;
+      line-height: 1.75; 
+      overflow-x: hidden;
+      padding-bottom: 6rem;
+    }
+
+    /* ── Animations ── */
+    .reveal {
+      opacity: 0;
+      animation: fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+      will-change: transform, opacity;
+    }
+    
+    .reveal-1 { animation-delay: 0.30s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Post Layout & Typography ── */
+    .post-article {
+      max-width: 760px;
+      margin: 0 auto 6rem;
+      padding: 3rem 2.5rem;
+      border: 1px solid #D8D6D0;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.62);
+      box-shadow: 0 12px 34px rgba(26, 26, 24, 0.05);
+      position: relative;
+      z-index: 10;
+      text-align: left; 
+    }
+
+    .post-header {
+      padding-bottom: 1.25rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #D8D6D0;
+    }
+
+    .post-meta {
+      font-size: 0.78rem;
+      letter-spacing: 0.03em;
+      color: #8A8880;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem; 
+    }
+
+    .post-category {
+      color: #1A1A18;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .post-category::before {
+      content: '•';
+      margin-right: 0.6rem;
+      color: #D8D6D0;
+      font-weight: normal;
+    }
+
+    .post-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #1A1A18;
+      margin: 2rem 0 1rem; 
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    .post-intro {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #8A8880;
+      margin: 0; 
+    }
+
+    .post-content {
+      font-size: 1.05rem;
+      line-height: 1.75; 
+      color: #222;
+    }
+
+    .post-content p {
+      margin: 0 0 1.5rem;
+      text-align: justify;
+    }
+
+    .post-content h3 {
+      font-size: 1.3rem;
+      margin: 2.5rem 0 1rem;
+      color: #1A1A18;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Post Footer Navigation ── */
+    .post-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #D8D6D0;
+    }
+
+    .back-link, .next-link {
+      color: #1A1A18;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: opacity 0.3s ease;
+    }
+
+    .back-link:hover, .next-link:hover {
+      opacity: 0.6;
+    }
+
+    @media (max-width: 640px) {
+      .post-article { padding: 2rem 1.25rem; }
+      .post-title { font-size: 1.7rem; }
+      .post-content, .post-intro { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <script>
+      /* 💡 깊어진 폴더 구조(en/Blog_AuD/HearingAids)에 맞춰 이미지 경로를 상위로 3번(../) 나갑니다 */
+      window.bannerConfig = {
+          title: "Hearing Aids",
+          subtitle: "Thoughts on audiology, sound engineering, and a life in between.",
+          media: [
+              '../../../images/blog-banner.jpg'
+          ]
+      };
+  </script>
+  <div id="banner-placeholder"></div>
+
+  <article class="post-article reveal reveal-1">
+    
+    <header class="post-header">
+      <div class="post-meta">
+        <span>August 20th, 2026</span>
+        <span class="post-category">Hearing Aids</span>
+      </div>
+      <h1 class="post-title">Samsung Approved for Hearing Aids? What Does That Mean?</h1>
+      <p class="post-intro">FDA Clears Samsung Galaxy Buds Pro 3 and Buds 4 Pro for Hearing Aid Features</p>
+    </header>
+
+    <div class="post-content">
+      <p>On August 11, 2026, Samsung Electronics announced that its Galaxy Buds Hearing Aid feature received clearance from the U.S. Food and Drug Administration (FDA). Compatible with the Galaxy Buds3 Pro and upcoming Galaxy Buds4 Pro, this feature will effectively enable the earbuds to serve as over-the-counter (OTC) hearing aids starting in the fourth quarter of 2026.</p>
+
+      <p>Designed for individuals 18 years and older with perceived mild-to-moderate hearing loss, the feature allows users to access hearing support directly through their device settings—without requiring a prescription or clinic visit. The self-administered Hearing Test, registered as a Software as a Medical Device (SaMD), utilizes pure-tone audiometry to generate an air conduction audiogram in short time. Based on these results, the system applies the NAL-NL2 prescription fitting formula and integrates processing features like directional beamforming and background noise elimination.</p>
+
+      <p>As an audiologist and a current Galaxy Buds3 Pro user, I am quite excited to test this feature firsthand. I was genuinely impressed by Apple’s hearing health advancements on the AirPods Pro 2, and I am curious to see how Samsung's implementation and acoustic tuning compare.</p>
+
+      <h3>What Does This Entail for the Hearing Aid Industry?</h3>
+      <p>This development signals a profound shift for the hearing aid industry at large. Samsung’s press release specifically highlights features like directional beamforming and noise elimination. ReSound, a manufacturer that has long differentiated itself through advanced beamforming, will now need to find new ways to separate its technology from standard consumer earbuds.</p>
+
+      <p>Furthermore, traditional manufacturers such as Oticon, Phonak, Widex, Starkey, and Signia must deliver tangible innovations rather than simply leaning on "Artificial Intelligence" as a marketing buzzword. Many patients are already growing fatigued by such claims, and audiologists find themselves with fewer truly distinct tools to offer.</p>
+
+      <p>If traditional hearing aid companies continue to compete primarily on noise cancellation, they are unlikely to outperform tech giants like Apple and Samsung—especially given the fundamental acoustic limitations of open-fitting styles. Automatic program switching based on acoustic environments (often marketed as "intelligent sound adaptation") merely hints at effective noise reduction for the patient; in practice, it is no longer enough.</p>
+
+      <p>Instead of introducing more jargon, traditional manufacturers should focus on solving foundational user problems likes: designing more comfortable and less irritating earpieces and domes, developing more intuitive insertion methods for receivers and custom molds and providing reliable indicators to help patients verify whether their devices are seated and working correctly.</p>
+
+      <h3>Final Thoughts</h3>
+      <p>The traditional hearing aid industry has faced intensifying competition since the deregulation of over-the-counter (OTC) devices and the aggressive expansion of big-box retailers like Costco. Ironically, patient complaints regarding acoustic comfort, physical fit, and sound quality have also risen in tandem.</p>
+
+      <p>This phenomenon underscores the irreplaceable role of well-trained hearing healthcare professionals. The future of hearing care remains bright—but specifically for clinicians who possess a deep mastery of auditory mechanics, signal processing, and the patience to listen and guide patients through complex rehabilitative journeys.</p>
+
+      <p>Like many sectors, the hearing healthcare industry is undergoing a K-shaped trajectory. Competent and compassionate clinicians will thrive, while those relying on passive device dispensing will fall behind.</p>
+
+      <p>Am I one of the good ones? Well, feel free to reach out and find out.</p>
+
+      <hr style="margin: 3rem 0; border: 0; border-top: 1px solid #D8D6D0;">
+
+      <h3>Reference</h3>
+      <p style="font-size: 0.9rem; color: #8A8880;">
+        1. <strong>Samsung Electronics Global Newsroom</strong> (August 11, 2026). <em>"Samsung’s Hearing Aid Feature on Galaxy Buds Cleared by FDA."</em> Available at: <a href="https://news.samsung.com" style="color: #1A1A18; text-decoration: underline;">Samsung Newsroom</a>
+      </p>
+    </div>
+
+    <footer class="post-footer">
+      <!-- 💡 Back-link도 깊어진 폴더에 맞춰 블로그 메인으로 돌아갈 수 있도록 3칸 밖으로 설정 -->
+      <a href="../../../04_blog.html" class="back-link">← Back to Blog List</a>
+      <a href="#" class="next-link">Next Article →</a>
+    </footer>
+  </article>
+
+  <div id="site-footer-placeholder"></div>
+  <div id="footer-placeholder"></div>
+
+  <script>
+      /* 💡 StructureAssest 폴더를 찾기 위해 루트 방향으로 3번 나갑니다. */
+      window.componentPath = "../../../StructureAssest/"; 
+  </script>
+  <script src="../../../StructureAssest/includes.js"></script>
+
+</body>
+</html>
