@@ -25,7 +25,7 @@
       color: #1A1A18;
       line-height: 1.9; 
       overflow-x: hidden;
-      padding-bottom: 6rem; /* 푸터를 위한 하단 여백 */
+      padding-bottom: 3rem; /* 푸터를 위한 하단 여백 */
     }
 
     /* ── Animations (배너 등장 후 0.3초 뒤 부드럽게 본문 등장) ── */
@@ -171,11 +171,9 @@
   <script>
       // 개별 포스트 페이지 배너 설정 (블로그 리스트와 통일감을 주는 것이 좋습니다)
       window.bannerConfig = {
-          title: "Article",
-          subtitle: "Thoughts on audiology, sound engineering, and a life in between.",
-          media: [
-              'images/blog-banner.jpg' // 블로그 메인과 동일한 이미지를 쓰거나, 이 글만의 대표 이미지를 넣으세요.
-          ]
+          title: "Transparency in Hearing Care",
+          subtitle: "In an industry often clouded by technical jargon and confusing pricing structures, transparency isn't just a buzzword—it's a clinical necessity.",
+          mark: '<svg width="26" height="26" viewBox="0 0 48 48"><path d="M24,24 m-3,0 a3,3 0 1,1 6,0 a6,6 0 1,1 -12,0 a12,12 0 1,1 24,0 a18,18 0 1,1 -36,0" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/></svg>'
       };
   </script>
   <div id="banner-placeholder"></div>
@@ -187,8 +185,6 @@
         <span>October 15th, 2024</span>
         <span class="post-category">Audiology</span>
       </div>
-      <h1 class="post-title">Transparency in Hearing Care</h1>
-      <p class="post-intro">In an industry often clouded by technical jargon and confusing pricing structures, transparency isn't just a buzzword—it's a clinical necessity.</p>
     </header>
 
     <div class="post-content">
@@ -210,9 +206,14 @@
     </footer>
   </article>
 
+  <div id="site-footer-placeholder"></div>
   <div id="footer-placeholder"></div>
 
-  <script src="includes.js"></script>
+  <script>
+      /* 💡 StructureAssest 폴더를 찾기 위해 루트 방향으로 1번 나갑니다. */
+      window.componentPath = "../StructureAssest/"; 
+  </script>
+  <script src="../StructureAssest/includes.js"></script>
 
 </body>
 </html>

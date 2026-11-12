@@ -1,71 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Common Questions About Hearing Aids</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/04_blog_style.css">
-    <link rel="stylesheet" href="css/03_audiology_style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Common Questions About Hearing Aids - Dr. Cho</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================================
+       Post Page CSS — (컴포넌트 외 본문 전용 스타일)
+    ============================================================ */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Nanum Myeongjo', serif !important;
+    }
+
+    body {
+      background-color: #F7F6F2;
+      color: #1A1A18;
+      line-height: 1.9; 
+      overflow-x: hidden;
+      padding-bottom: 3rem;
+    }
+
+    /* ── Animations ── */
+    .reveal {
+      opacity: 0;
+      animation: fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+      will-change: transform, opacity;
+    }
+    
+    .reveal-1 { animation-delay: 0.30s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Post Layout & Typography ── */
+    .post-article {
+      max-width: 760px;
+      margin: 0 auto 6rem;
+      padding: 3rem 2.5rem;
+      border: 1px solid #D8D6D0;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.62);
+      box-shadow: 0 12px 34px rgba(26, 26, 24, 0.05);
+      position: relative;
+      z-index: 10;
+      text-align: left; 
+    }
+
+    .post-header {
+      padding-bottom: 1.25rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #D8D6D0;
+    }
+
+    .post-meta {
+      font-size: 0.78rem;
+      letter-spacing: 0.03em;
+      color: #8A8880;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem; 
+    }
+
+    .post-category {
+      color: #1A1A18;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .post-category::before {
+      content: '•';
+      margin-right: 0.6rem;
+      color: #D8D6D0;
+      font-weight: normal;
+    }
+
+    .post-content {
+      font-size: 1.05rem;
+      line-height: 1.75; 
+      color: #222;
+    }
+
+    .post-content p {
+      margin: 0 0 1.5rem;
+    }
+
+    .post-content h3 {
+      font-size: 1.3rem;
+      margin: 2.5rem 0 1rem;
+      color: #1A1A18;
+      font-weight: 800;
+    }
+
+    .post-content blockquote {
+      margin: 2rem 0;
+      padding: 1.2rem 1.5rem;
+      border-left: 2px solid #1A1A18;
+      background: rgba(26, 26, 24, 0.03);
+      font-style: italic;
+      color: #1A1A18;
+      line-height: 1.75;
+    }
+
+    /* ── Post Footer Navigation ── */
+    .post-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #D8D6D0;
+    }
+
+    .back-link, .next-link {
+      color: #1A1A18;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: opacity 0.3s ease;
+    }
+
+    .back-link:hover, .next-link:hover {
+      opacity: 0.6;
+    }
+
+    @media (max-width: 640px) {
+      .post-article { padding: 2rem 1.25rem; }
+      .post-content { font-size: 0.95rem; }
+    }
+  </style>
 </head>
-<body class="post-page">
-    <nav class="navbar">
-        <div class="logo">Dr. Cho Audiology</div>
-        <div class="nav-links">
-            <a href="02_about.html">About Me</a>
-            <a href="03_audiology.html">Audiology</a>
-            <a href="04_blog.html" class="active">Blog</a>
-            <a href="01_index.html">Index</a>
-        </div>
-    </nav>
+<body>
 
-    <section class="hero-section">
-        <div class="hero-content">
-            <p class="subtitle">Blog Post</p>
-            <h1>The Common Questions About Hearing Aids</h1>
-        </div>
-    </section>
+  <div id="header-placeholder"></div>
 
-    <section class="content-section">
-        <article class="post-article">
-            <header class="post-header">
-                <div class="post-meta">
-                    <span class="post-date">OCTOBER 28th, 2024</span>
-                    <span class="post-category">Hearing Aids</span>
-                </div>
-                <h2 class="post-title">The Common Questions About Hearing Aids</h2>
-                <p class="post-intro">Many people feel unsure about hearing aids at first, but most questions become easier once the experience is explained clearly.</p>
-            </header>
+  <script>
+      window.bannerConfig = {
+          title: "The Common Questions About Hearing Aids",
+          subtitle: "Many people feel unsure about hearing aids at first, but most questions become easier once the experience is explained clearly.",
+          mark: '<svg width="26" height="26" viewBox="0 0 48 48"><circle cx="10" cy="24" r="2.6" fill="#1a1a1a"/><path d="M19,15 A13,13 0 0,1 19,33" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round"/><path d="M27,9 A21,21 0 0,1 27,39" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round"/></svg>'
+      };
+  </script>
+  <div id="banner-placeholder"></div>
 
-            <div class="post-content">
-                <p>Hearing aids are often discussed as if they are a simple purchase, but in reality they are a personal tool that can affect comfort, communication, and confidence in everyday life. People often ask whether hearing aids will feel unnatural, whether they are difficult to maintain, or whether they will make them “look different.”</p>
+  <article class="post-article reveal reveal-1">
+    
+    <header class="post-header">
+      <div class="post-meta">
+        <span>October 28th, 2024</span>
+        <span class="post-category">Hearing Aids</span>
+      </div>
+    </header>
 
-                <h3>What to expect when getting started</h3>
-                <p>Most hearing aids are designed to be discreet, comfortable, and easy to use, but the experience can still feel unfamiliar at first. The adjustment period is different for everyone, and the best outcomes often come from a gradual approach with follow-up support.</p>
+    <div class="post-content">
+      <p>Hearing aids are often discussed as if they are a simple purchase, but in reality they are a personal tool that can affect comfort, communication, and confidence in everyday life. People often ask whether hearing aids will feel unnatural, whether they are difficult to maintain, or whether they will make them “look different.”</p>
 
-                <blockquote>Success with hearing aids is rarely about the device alone; it is about fit, education, and patience.</blockquote>
+      <h3>What to expect when getting started</h3>
+      <p>Most hearing aids are designed to be discreet, comfortable, and easy to use, but the experience can still feel unfamiliar at first. The adjustment period is different for everyone, and the best outcomes often come from a gradual approach with follow-up support.</p>
 
-                <p>Another common question is whether hearing aids will restore hearing completely. In most cases, they improve access to sound and help the brain make better use of it, but they are not a perfect replacement for natural hearing. Understanding that distinction can make expectations more realistic and more positive.</p>
+      <blockquote>Success with hearing aids is rarely about the device alone; it is about fit, education, and patience.</blockquote>
 
-                <h3>Maintenance and long-term comfort</h3>
-                <p>Regular cleaning, battery care, and periodic check-ins are usually enough to keep devices working well. The more a patient understands how their hearing aid should sound and feel over time, the easier it becomes to make adjustments and enjoy the benefits.</p>
-            </div>
+      <p>Another common question is whether hearing aids will restore hearing completely. In most cases, they improve access to sound and help the brain make better use of it, but they are not a perfect replacement for natural hearing. Understanding that distinction can make expectations more realistic and more positive.</p>
 
-            <footer class="post-footer">
-                <a class="back-link" href="04_blog.html">← Back to all posts</a>
-                <a class="next-link" href="04_blog_post_20241015_transparency_in_hearing_care.html">← Previous post</a>
-            </footer>
-        </article>
-    </section>
-
-    <section class="contact-section">
-        <h2>Ready to take the next step?</h2>
-        <button class="contact-button" onclick="window.location.href='03_audiology.html'">Schedule an Appointment</button>
-    </section>
-
-    <div class="footer-meta">
-        <span class="footer-copyright">&copy; 2026 Dr. Cho Audiology. All rights reserved.</span>
-        <span class="footer-corner-mark">Dr. Cho</span>
+      <h3>Maintenance and long-term comfort</h3>
+      <p>Regular cleaning, battery care, and periodic check-ins are usually enough to keep devices working well. The more a patient understands how their hearing aid should sound and feel over time, the easier it becomes to make adjustments and enjoy the benefits.</p>
     </div>
+
+    <footer class="post-footer">
+      <a href="../../htmls/blog.html" class="back-link">← Back to Blog List</a>
+      <a href="20241015_transparency_in_hearing_care.html" class="next-link">Next Article →</a>
+    </footer>
+  </article>
+
+  <div id="site-footer-placeholder"></div>
+  <div id="footer-placeholder"></div>
+
+  <script>
+      /* 💡 StructureAssest 폴더를 찾기 위해 루트 방향으로 1번 나갑니다. */
+      window.componentPath = "../StructureAssest/"; 
+  </script>
+  <script src="../StructureAssest/includes.js"></script>
+
 </body>
 </html>
