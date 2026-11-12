@@ -87,6 +87,22 @@
       font-weight: normal;
     }
 
+    .post-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #1A1A18;
+      margin: 1.5rem 0 1rem; 
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    .post-intro {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #8A8880;
+      margin: 0; 
+    }
+
     .post-content {
       font-size: 1.05rem;
       line-height: 1.75; 
@@ -142,7 +158,8 @@
 
     @media (max-width: 640px) {
       .post-article { padding: 2rem 1.25rem; }
-      .post-content { font-size: 0.95rem; }
+      .post-title { font-size: 1.7rem; }
+      .post-content, .post-intro { font-size: 0.95rem; }
     }
   </style>
 </head>
@@ -152,8 +169,8 @@
 
   <script>
       window.bannerConfig = {
-          title: "The Common Questions About Hearing Aids",
-          subtitle: "Many people feel unsure about hearing aids at first, but most questions become easier once the experience is explained clearly.",
+          title: "Hearing Aids",
+          subtitle: "Thoughts on audiology, sound engineering, and a life in between.",
           mark: '<svg width="26" height="26" viewBox="0 0 48 48"><circle cx="10" cy="24" r="2.6" fill="#1a1a1a"/><path d="M19,15 A13,13 0 0,1 19,33" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round"/><path d="M27,9 A21,21 0 0,1 27,39" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round"/></svg>'
       };
   </script>
@@ -166,6 +183,8 @@
         <span>October 28th, 2024</span>
         <span class="post-category">Hearing Aids</span>
       </div>
+      <h1 class="post-title">The Common Questions About Hearing Aids</h1>
+      <p class="post-intro">Many people feel unsure about hearing aids at first, but most questions become easier once the experience is explained clearly.</p>
     </header>
 
     <div class="post-content">
