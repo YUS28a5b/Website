@@ -2,6 +2,13 @@
 
 const blogPosts = [
     {
+        date: "NOVEMBER 12th, 2026",
+        tag: "Audiology",
+        title: "Expectation vs Reality: Cochlear Implant",
+        excerpt: "A cochlear implant doesn't give you your hearing back. It gives your brain a new kind of hearing to learn — rougher at first, clearer with time, and for many people, life-changing in the end.",
+        link: "../Blog_AuD/Audiology/20261112_expectation_vs_reality_cochlear_implant.html"
+        },
+    {
         date: "NOVEMBER 11th, 2026",
         tag: "Audiology",
         title: "Your 'Mids' Are My 'Highs'",
