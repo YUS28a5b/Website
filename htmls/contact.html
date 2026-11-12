@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - Dr. Cho Audiology</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* ============================================================
+       Contact Page CSS — (컴포넌트 외 본문 전용 스타일)
+    ============================================================ */
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Nanum Myeongjo', 'Georgia', 'Times New Roman', sans-serif;
+        color: #1A1A18;
+        background-color: #F7F6F2;
+        line-height: 1.9;
+        margin: 0;
+        padding: 0;
+        padding-bottom: 3rem; /* 푸터를 위한 하단 여백 */
+    }
+
+    /* ── Animations ── */
+    .reveal {
+        opacity: 0;
+        animation: fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+        will-change: transform, opacity;
+    }
+
+    .reveal-1 { animation-delay: 0.30s; }
+    .reveal-2 { animation-delay: 0.45s; }
+
+    @keyframes fadeUp {
+        0% { opacity: 0; transform: translateY(18px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── 본문 섹션 공통 ── */
+    .content-section {
+        height: auto;
+        padding: 20px 20px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    h2 {
+        font-size: 2rem;
+        font-weight: 400;
+        border-bottom: 1px solid #D8D6D0;
+        padding-bottom: 12px;
+        margin-bottom: 30px;
+    }
+
+    .intro-text {
+        font-size: 1.1rem;
+        color: #1A1A18;
+        margin-bottom: 0;
+    }
+
+    /* ── 연락처 폼 ── */
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 10px;
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .form-field label {
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #1A1A18;
+    }
+
+    .form-field input,
+    .form-field textarea {
+        font-family: 'Nanum Myeongjo', serif;
+        font-size: 1rem;
+        color: #1A1A18;
+        background-color: rgba(255, 255, 255, 0.62);
+        border: 1px solid #D8D6D0;
+        border-radius: 4px;
+        padding: 12px 14px;
+        line-height: 1.6;
+        outline: none;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+        border-color: #1A1A18;
+    }
+
+    .form-field textarea {
+        min-height: 160px;
+        resize: vertical;
+    }
+
+    .submit-button {
+        font-family: 'Nanum Myeongjo', serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #F7F6F2;
+        background-color: #1A1A18;
+        border: none;
+        border-radius: 4px;
+        padding: 14px 28px;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+        align-self: flex-start;
+    }
+
+    .submit-button:hover {
+        opacity: 0.8;
+    }
+
+    /* ── 직접 이메일 안내 ── */
+    .direct-email {
+        margin-top: 10px;
+        padding-top: 30px;
+        border-top: 1px solid #D8D6D0;
+    }
+
+    .direct-email p {
+        font-size: 1.05rem;
+        color: #1A1A18;
+        margin: 0 0 8px 0;
+    }
+
+    .direct-email a {
+        color: #1A1A18;
+        font-weight: 700;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+
+    .direct-email a:hover {
+        opacity: 0.6;
+    }
+
+    @media (max-width: 640px) {
+        .content-section { padding: 20px 1.25rem; }
+        h2 { font-size: 1.7rem; }
+        .intro-text, .direct-email p { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <script>
+        // Contact 전용 배너 설정
+        // 표식: 모아 편지 아이콘 W2 (정면 봉투, 손맛 버전, 2026-11-12)
+        window.bannerConfig = {
+            title: "Contact",
+            subtitle: "Get in touch — I'd love to hear from you.",
+            mark: '<svg width="26" height="26" viewBox="0 0 48 48"><path d="M8,14.2 Q24,12.2 40,13.4 Q41.8,24 40.4,35.6 Q24,37.2 7.6,36 Q6.2,25 8,14.2 Z" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2,16 Q15,20 18.5,24 Q21,26.5 24,28.6" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round"/><path d="M38.8,15.2 Q33,19.5 29.5,24 Q27,26.5 24,28.6" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round"/></svg>'
+        };
+    </script>
+    <div id="banner-placeholder"></div>
+
+    <main>
+        <section class="content-section reveal reveal-1">
+            <h2>Send a Message</h2>
+            <p class="intro-text">Questions about hearing, hearing aids, or the articles on this site — feel free to reach out. I read every message myself.</p>
+        </section>
+
+        <section class="content-section reveal reveal-2">
+            <!-- Formspree 엔드포인트: MY FIRST PROJECT / Contact 폼 (2026-11-12 확인) -->
+            <form class="contact-form" action="https://formspree.io/f/xeagoloz" method="POST">
+                <div class="form-field">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required />
+                </div>
+                <div class="form-field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required />
+                </div>
+                <div class="form-field">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" />
+                </div>
+                <div class="form-field">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+
+            <div class="direct-email">
+                <p>Prefer email directly? Write to <a href="mailto:sduott123@gmail.com">sduott123@gmail.com</a>.</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="site-footer-placeholder"></div>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+            window.componentPath = "../StructureAssest/"; 
+        </script>
+        
+    <script src="../StructureAssest/includes.js"></script>
+
+</body>
+</html>
