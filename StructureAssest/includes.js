@@ -75,12 +75,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById("banner-title").textContent = config.title;
                 document.getElementById("banner-subtitle").textContent = config.subtitle;
 
-                // 💡 B 틀 배너 (모아 최종안, 2026-11-12): 표식(mark)이 있으면 선 위의 표식을 보여주고 미디어 재생을 건너뜁니다
-                const ruleEl = document.getElementById("banner-rule");
+                // 💡 B 틀 배너 v2 (모아 최종안, 2026-11-12): 표식(mark)이 있으면 선 없이 표식만 보여주고 미디어 재생을 건너뜁니다
                 const markEl = document.getElementById("banner-mark");
-                if (config.mark && ruleEl && markEl) {
+                if (config.mark && markEl) {
                     markEl.innerHTML = config.mark;
-                    ruleEl.classList.add("visible");
+                    markEl.classList.add("visible");
                 } else {
                     const bgContainer = bannerPlaceholder.querySelector(".banner-bg-container");
                     let currentIdx = 0;
