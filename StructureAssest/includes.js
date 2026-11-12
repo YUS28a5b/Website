@@ -75,53 +75,61 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById("banner-title").textContent = config.title;
                 document.getElementById("banner-subtitle").textContent = config.subtitle;
 
-                const bgContainer = bannerPlaceholder.querySelector(".banner-bg-container");
-                let currentIdx = 0;
+                // 💡 B 틀 배너 (모아 최종안, 2026-11-12): 표식(mark)이 있으면 선 위의 표식을 보여주고 미디어 재생을 건너뜁니다
+                const ruleEl = document.getElementById("banner-rule");
+                const markEl = document.getElementById("banner-mark");
+                if (config.mark && ruleEl && markEl) {
+                    markEl.innerHTML = config.mark;
+                    ruleEl.classList.add("visible");
+                } else {
+                    const bgContainer = bannerPlaceholder.querySelector(".banner-bg-container");
+                    let currentIdx = 0;
 
-                function playNextMedia(isFirstLoad = false) {
-                    if (!config.media || config.media.length === 0) return;
+                    function playNextMedia(isFirstLoad = false) {
+                        if (!config.media || config.media.length === 0) return;
 
-                    const file = config.media[currentIdx];
-                    const isVideo = file.toLowerCase().endsWith(".mp4") || file.toLowerCase().endsWith(".webm");
-                    
-                    const newMedia = document.createElement(isVideo ? "video" : "img");
-                    newMedia.src = file; 
-                    newMedia.className = "banner-media"; 
-                    
-                    if (isVideo) {
-                        newMedia.muted = true;
-                        newMedia.playsInline = true;
-                        newMedia.onended = () => {
-                            currentIdx = (currentIdx + 1) % config.media.length;
-                            playNextMedia();
-                        };
+                        const file = config.media[currentIdx];
+                        const isVideo = file.toLowerCase().endsWith(".mp4") || file.toLowerCase().endsWith(".webm");
                         
-                        if (!isFirstLoad) {
-                            newMedia.play().catch(e => console.log("비디오 재생 에러:", e));
+                        const newMedia = document.createElement(isVideo ? "video" : "img");
+                        newMedia.src = file; 
+                        newMedia.className = "banner-media"; 
+                        
+                        if (isVideo) {
+                            newMedia.muted = true;
+                            newMedia.playsInline = true;
+                            newMedia.onended = () => {
+                                currentIdx = (currentIdx + 1) % config.media.length;
+                                playNextMedia();
+                            };
+                            
+                            if (!isFirstLoad) {
+                                newMedia.play().catch(e => console.log("비디오 재생 에러:", e));
+                            }
+                        } else {
+                            setTimeout(() => {
+                                currentIdx = (currentIdx + 1) % config.media.length;
+                                playNextMedia();
+                            }, 5000); 
                         }
-                    } else {
-                        setTimeout(() => {
-                            currentIdx = (currentIdx + 1) % config.media.length;
-                            playNextMedia();
-                        }, 5000); 
+
+                        bgContainer.appendChild(newMedia);
+                        setTimeout(() => newMedia.classList.add("active"), 50);
+
+                        const oldMediaList = bgContainer.querySelectorAll(".banner-media");
+                        if (oldMediaList.length > 1) {
+                            const oldMedia = oldMediaList[0];
+                            oldMedia.classList.remove("active");
+                            setTimeout(() => oldMedia.remove(), 1200); 
+                        }
+
+                        if (isFirstLoad) {
+                            firstMediaElement = newMedia;
+                        }
                     }
 
-                    bgContainer.appendChild(newMedia);
-                    setTimeout(() => newMedia.classList.add("active"), 50);
-
-                    const oldMediaList = bgContainer.querySelectorAll(".banner-media");
-                    if (oldMediaList.length > 1) {
-                        const oldMedia = oldMediaList[0];
-                        oldMedia.classList.remove("active");
-                        setTimeout(() => oldMedia.remove(), 1200); 
-                    }
-
-                    if (isFirstLoad) {
-                        firstMediaElement = newMedia;
-                    }
+                    playNextMedia(true);
                 }
-
-                playNextMedia(true);
             }
 
             setTimeout(() => {

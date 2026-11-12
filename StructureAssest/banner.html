@@ -79,6 +79,36 @@
     margin: 0 auto;
   }
 
+  /* 💡 B 틀 배너: 선 위의 표식 (모아 최종안, 2026-11-12) */
+  .banner-rule {
+    display: none;
+    width: 100%;
+    align-items: center;
+    gap: 12px;
+    margin: 2px 0 12px;
+  }
+
+  .banner-rule.visible {
+    display: flex;
+  }
+
+  .banner-rule-seg {
+    flex: 1;
+    height: 1px;
+    background: #d8d2c2;
+  }
+
+  .banner-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .banner-mark svg {
+    display: block;
+  }
+
   /* 💡 타이틀 텍스트 스타일 */
   .banner-section h1 {
     font-family: 'Nanum Myeongjo', serif !important;
@@ -102,6 +132,7 @@
 <header class="banner-section">
   <div class="banner-bg-container"></div>
   <div class="banner-content">
+    <div class="banner-rule" id="banner-rule"><span class="banner-rule-seg"></span><span class="banner-mark" id="banner-mark"></span><span class="banner-rule-seg"></span></div>
     <h1 id="banner-title">Loading...</h1>
     <p id="banner-subtitle" class="subtitle"></p>
   </div>
