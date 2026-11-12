@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expectation vs Reality: Cochlear Implant - Dr. Cho</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================================
+       Post Page CSS — (컴포넌트 외 본문 전용 스타일)
+    ============================================================ */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Nanum Myeongjo', serif !important;
+    }
+
+    body {
+      background-color: #F7F6F2;
+      color: #1A1A18;
+      line-height: 1.75; 
+      overflow-x: hidden;
+      padding-bottom: 6rem;
+    }
+
+    /* ── Animations ── */
+    .reveal {
+      opacity: 0;
+      animation: fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+      will-change: transform, opacity;
+    }
+    
+    .reveal-1 { animation-delay: 0.30s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Post Layout & Typography ── */
+    .post-article {
+      max-width: 760px;
+      margin: 0 auto 6rem;
+      padding: 3rem 2.5rem;
+      border: 1px solid #D8D6D0;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.62);
+      box-shadow: 0 12px 34px rgba(26, 26, 24, 0.05);
+      position: relative;
+      z-index: 10;
+      text-align: left; 
+    }
+
+    .post-header {
+      padding-bottom: 1.25rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #D8D6D0;
+    }
+
+    .post-meta {
+      font-size: 0.78rem;
+      letter-spacing: 0.03em;
+      color: #8A8880;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem; 
+    }
+
+    .post-category {
+      color: #1A1A18;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .post-category::before {
+      content: '•';
+      margin-right: 0.6rem;
+      color: #D8D6D0;
+      font-weight: normal;
+    }
+
+    .post-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #1A1A18;
+      margin: 2rem 0 1rem; 
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    .post-intro {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #8A8880;
+      margin: 0; 
+    }
+
+    .post-content {
+      font-size: 1.05rem;
+      line-height: 1.75; 
+      color: #222;
+    }
+
+    .post-content p {
+      margin: 0 0 1.5rem;
+      text-align: justify;
+    }
+
+    .post-content h3 {
+      font-size: 1.3rem;
+      margin: 2.5rem 0 1rem;
+      color: #1A1A18;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Figures ── */
+    .post-content figure {
+      margin: 0 0 1.5rem;
+    }
+
+    .post-content figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid #D8D6D0;
+      border-radius: 4px;
+    }
+
+    .post-content figcaption {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #8A8880;
+      margin-top: 0.6rem;
+      text-align: left;
+    }
+
+    /* ── Sources ── */
+    .post-sources {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #D8D6D0;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: #8A8880;
+    }
+
+    .post-sources h3 {
+      font-size: 1.1rem;
+      margin: 0 0 1rem;
+      color: #1A1A18;
+      font-weight: 800;
+    }
+
+    .post-sources p {
+      margin: 0 0 0.9rem;
+      text-align: left;
+    }
+
+    /* ── Post Footer Navigation ── */
+    .post-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #D8D6D0;
+    }
+
+    .back-link, .next-link {
+      color: #1A1A18;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: opacity 0.3s ease;
+    }
+
+    .back-link:hover, .next-link:hover {
+      opacity: 0.6;
+    }
+
+    @media (max-width: 640px) {
+      .post-article { padding: 2rem 1.25rem; }
+      .post-title { font-size: 1.7rem; }
+      .post-content, .post-intro { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <script>
+      window.bannerConfig = {
+          title: "Audiology",
+          subtitle: "Thoughts on audiology, sound engineering, and a life in between.",
+          media: [
+              'A3-Frontiers-2022-fig1.jpg'
+          ]
+      };
+  </script>
+  <div id="banner-placeholder"></div>
+
+  <article class="post-article reveal reveal-1">
+    
+    <header class="post-header">
+      <div class="post-meta">
+        <span>November 12th, 2026</span>
+        <span class="post-category">Audiology</span>
+      </div>
+      <h1 class="post-title">Expectation vs Reality: Cochlear Implant</h1>
+      <p class="post-intro">What a Cochlear Implant Actually Does — and What It Doesn't</p>
+    </header>
+
+    <div class="post-content">
+      <p>A student once interviewed me by phone, back when I was in my Au.D. program. I had no idea he wore a cochlear implant. None at all. Usually, when someone has had severe hearing loss since childhood, or lived with it for a long time, their consonants come out a little smeared. This student had none of that — he heard and spoke clearly, on the phone, of all places. That alone was impressive.</p>
+
+      <p>Later, I ran into him in the school cafeteria. He came over to say hello — he'd gotten into the program. And that's when I saw it: the implant. I was genuinely surprised. Even with a cochlear implant, he hears like this. He'd worn it since he was very young, which makes a difference. But in that moment, what hit me was how dramatically a cochlear implant can change a life.</p>
+
+      <p>That moment is also why I keep getting the same question, over and over, from patients and their families. So let me start there.</p>
+
+      <h3>The expectation</h3>
+
+      <p>"If I get a cochlear implant, will I hear again?"</p>
+
+      <p>I hear some version of this question all the time. Along with: "Will it really work?" "I heard it's surgery — can I even have it?" "Is it safe for my health?" "I'm old — is it still okay?" "Am I really bad enough to need one?"</p>
+
+      <p>Underneath all of them is the same picture: surgery fixes the ear, and hearing comes back, like flipping a switch. That picture is understandable. It is also not what a cochlear implant does.</p>
+
+      <h3>What it actually does</h3>
+
+      <p>A hearing aid makes sound louder. It takes the sound coming into the ear canal, amplifies it, and sends it through the middle ear the usual way. A cochlear implant does something else entirely. It skips the hair cells — the tiny sensors in the inner ear that turn sound into nerve signals — and sends electrical signals straight to the auditory nerve.</p>
+
+      <figure>
+        <img src="A3-Frontiers-2022-fig1.jpg" alt="Diagram of how a cochlear implant works: coil, audio processor, implant, auditory nerve, and cochlea">
+        <figcaption>How a cochlear implant works — the coil, audio processor, implant, auditory nerve, and cochlea. (Frontiers in Neuroscience, 2022, Figure 1, CC BY.)</figcaption>
+      </figure>
+
+      <p>That's why it can work even when hearing aids no longer help. But it also means the hearing it gives you is a different kind of hearing.</p>
+
+      <p>Here is the part that surprises people most. A healthy inner ear has roughly 30,000 nerve fibers, each carrying its own fine detail. A cochlear implant groups those signals together — current devices have just 12 to 22 channels, depending on the manufacturer (12 for MED-EL, 16 for Advanced Bionics, 22 for Cochlear Nucleus). The detail drops. And many patients describe what that sounds like in a very specific way: crackly. Like static. Like a radio that isn't quite tuned to the station.</p>
+
+      <p>As a sound designer, I have another way to say it: it sounds like low bit depth audio. When you lower the bit depth of a recording, you lose resolution — the sound gets rough, grainy, less precise. The crackly sound that people with low word-recognition scores describe sounds a lot like that.</p>
+
+      <figure>
+        <img src="S2-spectrogram-original-vs-8ch-vocoder.png" alt="Spectrogram comparing original speech with an 8-channel noise vocoder simulation">
+        <figcaption>Low bit depth illustration: original speech vs 8-channel noise vocoder simulation. Illustrative simulation — synthetic speech-like signal, 8-channel noise vocoder. Not a real CI recording or patient data.</figcaption>
+      </figure>
+
+      <p>But that is not everyone's story. Some people switch the implant on and hear well almost right away — words make sense from the first day. The experience varies a lot from person to person, and that variation is real: in the research, too, outcomes spread widely even among people with similar hearing loss (Ma et al., 2023). So if you are considering an implant, it is worth knowing both versions — the sound may start out rough and get clearer with time, or it may click much faster than you expect.</p>
+
+      <h3>Who it helps most</h3>
+
+      <p>Clinicians usually start talking about a cochlear implant when hearing aids stop being enough. A common rule of thumb for referral is 60/60: unaided average hearing thresholds of 60 dB HL or worse in the better ear, and an unaided monosyllabic word score of 60% or less in that ear (Zwolan et al., 2020).</p>
+
+      <p>How much difference it makes depends on where you start. Someone whose word recognition has dropped to 10–20% will almost certainly feel the difference. Someone still at 60% might not feel much of one. The worse the hearing, the bigger the gap the implant can close. One meta-analysis found average word-recognition scores improved by about 37 percentage points in the first three months after implantation (Ma et al., 2023).</p>
+
+      <p>Age matters less than people think. There is a minimum age — currently 7 months for MED-EL devices and 9 months for Cochlear's — because for a child, an implant can mean the difference between a life built on sign language and a life built on hearing. That is a different life, in the most literal sense. But there is no maximum age. I've heard of a 96-year-old having the surgery. As long as there is no medical reason not to, age alone doesn't rule it out.</p>
+
+      <p>The surgery itself is usually a same-day procedure, a few hours under general anesthesia. Before that comes an evaluation — and one thing worth knowing is that cochlear implants are usually handled by a dedicated center, not the clinic where you normally go. Criteria may differ slightly from center to center, so it's worth getting evaluated at more than one. Each team runs its own medical evaluation and walks you through the course of treatment, the device options, and insurance coverage.</p>
+
+      <p>And for people with severe loss, it's not only about conversation — it's about safety. Hearing a car coming, or a fire alarm going off, can be the difference between reacting in time and not.</p>
+
+      <p>What I tell patients is simple: you will hear, and your quality of life will likely rise with it — less frustration in every conversation, less withdrawing from people, more enjoyment of the life around you.</p>
+
+      <h3>The first weeks</h3>
+
+      <p>The implant is usually switched on about two weeks after surgery, once healing is underway. That day is famous — there are videos all over YouTube of it. A husband's voice. A child hearing a parent for the first time. People are startled. Some cry. Some just stare, amazed. Some are simply happy.</p>
+
+      <p>But there is a quieter side to that day, and it matters. If you used to hear normally and then lost your hearing, you carry a memory of what sound is supposed to be like. The implant might not match that memory — not at first, and maybe not ever in the way you expect. That gap can feel like disappointment, even when the implant is working. It's worth saying that out loud before the switch-on, not after.</p>
+
+      <p>What happens next is the part people underestimate: the brain learns. At first, the crackly sound is hard to make sense of. But with rehabilitation — training to recognize which crackly pattern is which word, which sentence — it gets clearer over time. The brain rewires itself around the new signal. Rehabilitation is usually provided by the implant center. The biggest gains come fast — most of the improvement happens in the first three months — and follow-up visits continue through the first year. Think of it like getting used to a new pair of glasses: at first everything feels off, and then one day you forget you're wearing them.</p>
+
+      <figure>
+        <img src="T1-first-weeks-timeline.png" alt="Timeline: surgery, switch-on, and rehabilitation over the first weeks">
+        <figcaption>The brain learns the new signal over time — at first crackly, then clearer.</figcaption>
+      </figure>
+
+      <h3>What happens at the center</h3>
+
+      <p>So if you or someone you love is considering it, here is the good news: you don't need to walk in with a list of questions. The center does the explaining. They run the evaluation, do their own medical workup, walk you through the device options and what insurance covers, and set up the rehabilitation plan. That is their job — and they do it for every patient.</p>
+
+      <p>And one more thing, for the people who are on the fence because only one ear is bad: "My other ear hears fine — do I really need this?" It's a fair question. One-sided hearing loss can throw off your balance, and it makes it harder to tell where sounds are coming from. An implant can help with both — and with the simple fact that understanding people gets easier when you can catch more of what they say.</p>
+
+      <h3>The takeaway</h3>
+
+      <p>A cochlear implant doesn't give you your hearing back. It gives your brain a new kind of hearing to learn — rougher at first, clearer with time, and for many people, life-changing in the end.</p>
+
+      <p>So the question isn't really "Will I hear again?" It's "What will I hear?" And that's a question worth asking properly, before the surgery, with someone who can walk you through the answer.</p>
+
+      <p>P.S. I'm planning a small experiment of my own: how far down can you turn the bit depth before a sound at the same level and frequency disappears? I'll write about what I find.</p>
+    </div>
+
+    <div class="post-sources">
+      <h3>Sources</h3>
+      <p>Zwolan, T. A., Schvartz-Leyzac, K. C., &amp; Pleasant, T. (2020). Development of a 60/60 Guideline for Referring Adults for a Traditional Cochlear Implant Candidacy Evaluation. <em>Otology &amp; Neurotology, 41</em>(7), 895–900. doi:10.1097/MAO.0000000000002664 — the 60/60 referral rule: an unaided monosyllabic word score of 60% or less and an unaided pure-tone average of 60 dB HL or more, both in the better ear.</p>
+      <p>Ma, C., Fried, J., Nguyen, S. A., Schvartz-Leyzac, K. C., Camposeo, E. L., Meyer, T. A., Dubno, J. R., &amp; McRackan, T. R. (2023). Longitudinal Speech Recognition Changes After Cochlear Implant: Systematic Review and Meta-analysis. <em>The Laryngoscope, 133</em>(5), 1014–1024. doi:10.1002/lary.30354 — average word-recognition scores improved by about 37 percentage points in the first three months after implantation (postlingually deafened adults).</p>
+      <p>U.S. Food and Drug Administration. (2025, November 26). Approval letter, MED-EL Cochlear Implant System (PMA P000025/S134) — pediatric indication from 7 months of age. The Cochlear Nucleus minimum age of 9 months dates to the 2020 FDA labeling.</p>
+      <p>Rehabilitation timing: the 'first three months' for the biggest gains follows Ma et al. 2023 (mean speech-recognition scores plateau after the first three months); the 3–6 months of therapy and 6–12 months to optimal hearing follow Stanford Health Care's cochlear implant program description, and the 12-month median for auditory training follows Dornhoffer et al. 2024, <em>American Journal of Otolaryngology, 45</em>(4), 104339 (survey of American Cochlear Implant Alliance members; no clinical guidelines exist).</p>
+      <p>The cafeteria story, the patient questions, the low-bit-depth and mistuned-radio descriptions, the activation-day and rehabilitation details, and the 96-year-old surgery story come from Dr. Cho's interviews (November 11–12, 2026), collected in the interview pool notes. The 30,000-fiber count matches the standard anatomy (Spoendlin &amp; Schrott, 1989). Channel counts are by manufacturer: MED-EL 12, Advanced Bionics 16, Cochlear Nucleus 22 (Cochlear Implant HELP comparison chart, v12.4c, 2023); in practice, overlapping current fields mean the number of effectively independent channels is lower still. In the original interview, Dr. Cho described the grouping as '30,000 parameters into 60' — that was his own shorthand, not a device spec, and the post uses the actual channel counts instead. The 96-year-old case is something Dr. Cho heard about, not a case he treated.</p>
+      <p><strong>Also consulted (not cited in the post):</strong></p>
+      <p>Zwolan, T. A., Kallogjeri, D., Firszt, J. B., &amp; Buchman, C. A. (2020). Assessment of Cochlear Implants for Adult Medicare Beneficiaries Aged 65 Years or Older Who Meet Expanded Indications of Open-Set Sentence Recognition. <em>JAMA Otolaryngology–Head &amp; Neck Surgery, 146</em>(10), 933–941. doi:10.1001/jamaoto.2020.2286 — median AzBio sentence scores in the implanted ear alone rose from 24% to 77% at 12 months (sentence test, not a word test, so not used in the post).</p>
+      <p>Rosemann, S., Gieseler, A., Tahden, M., Colonius, H., &amp; Thiel, C. M. (2021). Treatment of Age-Related Hearing Loss Alters Audiovisual Integration and Resting-State Functional Connectivity: A Randomized Controlled Pilot Trial. <em>eNeuro, 8</em>(6), ENEURO.0258-21.2021. doi:10.1523/ENEURO.0258-21.2021 — six months of hearing aid use and fMRI changes; left out of the post because the result is subtler than "the brain got better."</p>
+    </div>
+
+    <footer class="post-footer">
+      <a href="../../htmls/blog.html" class="back-link">← Back to Blog List</a>
+      <a href="20261111_your_mids_are_my_highs.html" class="next-link">Next Article →</a>
+    </footer>
+  </article>
+
+  <div id="site-footer-placeholder"></div>
+  <div id="footer-placeholder"></div>
+
+  <script>
+      /* 💡 StructureAssest 폴더를 찾기 위해 루트 방향으로 3번 나갑니다. */
+      window.componentPath = "../../../StructureAssest/"; 
+  </script>
+  <script src="../../../StructureAssest/includes.js"></script>
+
+</body>
+</html>
