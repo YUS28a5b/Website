@@ -2,12 +2,19 @@
 
 const blogPosts = [
     {
+        date: "NOVEMBER 22nd, 2026",
+        tag: "Audiology",
+        title: "The Quietest Sound Your Ear Can Hear",
+        excerpt: "In my clinic, I hear the same story again and again: at night, when the lights are off and they lie down, a sound appears — a high pitched ringing, a hissing. The sound was always there. Everyday noise just covers it up.",
+        link: "../Blog_AuD/Audiology/20261122_the_quietest_sound_your_ear_can_hear.html"
+    },
+    {
         date: "NOVEMBER 12th, 2026",
         tag: "Audiology",
         title: "Expectation vs Reality: Cochlear Implant",
         excerpt: "A cochlear implant doesn't give you your hearing back. It gives your brain a new kind of hearing to learn — rougher at first, clearer with time, and for many people, life-changing in the end.",
         link: "../Blog_AuD/Audiology/20261112_expectation_vs_reality_cochlear_implant.html"
-        },
+    },
     {
         date: "NOVEMBER 11th, 2026",
         tag: "Audiology",
