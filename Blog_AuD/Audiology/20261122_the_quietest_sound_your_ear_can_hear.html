@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Quietest Sound Your Ear Can Hear - Dr. Cho</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================================
+       Post Page CSS — (컴포넌트 외 본문 전용 스타일)
+    ============================================================ */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Nanum Myeongjo', serif !important;
+    }
+
+    body {
+      background-color: #F7F6F2;
+      color: #1A1A18;
+      line-height: 1.75; 
+      overflow-x: hidden;
+      padding-bottom: 3rem;
+    }
+
+    /* ── Animations ── */
+    .reveal {
+      opacity: 0;
+      animation: fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+      will-change: transform, opacity;
+    }
+    
+    .reveal-1 { animation-delay: 0.30s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Post Layout & Typography ── */
+    .post-article {
+      max-width: 760px;
+      margin: 0 auto 6rem;
+      padding: 3rem 2.5rem;
+      border: 1px solid #D8D6D0;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.62);
+      box-shadow: 0 12px 34px rgba(26, 26, 24, 0.05);
+      position: relative;
+      z-index: 10;
+      text-align: left; 
+    }
+
+    .post-header {
+      padding-bottom: 1.25rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #D8D6D0;
+    }
+
+    .post-meta {
+      font-size: 0.78rem;
+      letter-spacing: 0.03em;
+      color: #8A8880;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem; 
+    }
+
+    .post-category {
+      color: #1A1A18;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .post-category::before {
+      content: '•';
+      margin-right: 0.6rem;
+      color: #D8D6D0;
+      font-weight: normal;
+    }
+
+    .post-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #1A1A18;
+      margin: 2rem 0 1rem; 
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    .post-intro {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #8A8880;
+      margin: 0; 
+    }
+
+    .post-content {
+      font-size: 1.05rem;
+      line-height: 1.75; 
+      color: #222;
+    }
+
+    .post-content p {
+      margin: 0 0 1.5rem;
+      text-align: justify;
+    }
+
+    .post-content h3 {
+      font-size: 1.3rem;
+      margin: 2.5rem 0 1rem;
+      color: #1A1A18;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Figures ── */
+    .post-content figure {
+      margin: 0 0 1.5rem;
+    }
+
+    .post-content figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid #D8D6D0;
+      border-radius: 4px;
+    }
+
+    .post-content figcaption {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #8A8880;
+      margin-top: 0.6rem;
+      text-align: left;
+    }
+
+    /* ── Sources ── */
+    .post-sources {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #D8D6D0;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: #8A8880;
+    }
+
+    .post-sources h3 {
+      font-size: 1.1rem;
+      margin: 0 0 1rem;
+      color: #1A1A18;
+      font-weight: 800;
+    }
+
+    .post-sources p {
+      margin: 0 0 0.9rem;
+      text-align: left;
+    }
+
+    /* ── Post Footer Navigation ── */
+    .post-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #D8D6D0;
+    }
+
+    .back-link, .next-link {
+      color: #1A1A18;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: opacity 0.3s ease;
+    }
+
+    .back-link:hover, .next-link:hover {
+      opacity: 0.6;
+    }
+
+    @media (max-width: 640px) {
+      .post-article { padding: 2rem 1.25rem; }
+      .post-title { font-size: 1.7rem; }
+      .post-content, .post-intro { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <script>
+      window.bannerConfig = {
+          title: "Journal & Insights",
+          subtitle: "Thoughts on audiology, sound engineering, and a life in between.",
+          mark: '<svg width="26" height="26" viewBox="0 0 48 48"><circle cx="10" cy="24" r="2.6" fill="#1a1a1a"/><path d="M19,15 A13,13 0 0,1 19,33" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round"/><path d="M27,9 A21,21 0 0,1 27,39" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round"/></svg>'
+      };
+  </script>
+  <div id="banner-placeholder"></div>
+
+  <article class="post-article reveal reveal-1">
+    
+    <header class="post-header">
+      <div class="post-meta">
+        <span>November 22nd, 2026</span>
+        <span class="post-category">Audiology</span>
+      </div>
+      <h1 class="post-title">The Quietest Sound Your Ear Can Hear</h1>
+      <p class="post-intro">What Your Ear Hears When the World Goes Quiet</p>
+    </header>
+
+    <div class="post-content">
+      <h3>The story I hear again and again</h3>
+
+      <p>In my clinic, I hear the same story again and again. At night, when the lights are off and they lie down, a sound appears. A high pitched ringing. A hissing. Sometimes it is in both ears. Sometimes it starts in one ear and moves to the other.</p>
+
+      <p>They describe it the way you would describe a sound you have never heard before. Like static from an old radio or television. Like a dog whistle. Like a high bell that never fades. And they all say the same thing about when it comes: when it is quiet. Just before sleep. When they are lying still, doing nothing. When they are reading quietly.</p>
+
+      <p>The first thing most of them say is: “What is this sound?” At first, they ignore it. Then it starts to bother them. And then they start to worry — is something wrong with my health? Is something wrong with my mind? Is something wrong with my ears? It is a fair question. And it has one promising hypothesis — one that researchers began testing more than seventy years ago, in a soundproof room.</p>
+
+      <figure>
+        <img src="intro-photo-A-bedroom-night.jpg" alt="A quiet bedroom at night">
+        <figcaption>A quiet bedroom at night. Photo: Matt @ PEK, CC BY-SA 2.0, via Wikimedia Commons.</figcaption>
+      </figure>
+
+      <h3>The sound was always there</h3>
+
+      <p>In 1953, two researchers, Morris Heller and Moe Bergman, put 80 adults with normal hearing into a soundproof room, one at a time, and asked them what they heard. Ninety-four percent of them heard something — a buzzing, a ringing, a humming. None of them had reported tinnitus before they walked in.</p>
+
+      <p>Their conclusion was simple, and it still holds: the sound is always there. Everyday noise just covers it up. Ordinary quiet living conditions usually run above 35 dB SPL, and that is enough to mask it. A bedroom at night, at about 30 dBA, sits below that line. That is why the sound shows up at bedtime, and not at breakfast.</p>
+
+      <figure>
+        <img src="slot1-B-masking-threshold.png" alt="Diagram showing everyday sounds above the 35 dB SPL masking line and a bedroom at night below it">
+        <figcaption>Everyday sounds sit above the 35 dB SPL line. A bedroom at night sits below it — and that is when the sound surfaces.</figcaption>
+      </figure>
+
+      <p>The result has been repeated since. In one study, 64 percent of 120 young adults with normal hearing heard a sound after twenty minutes in a sound booth, most of them within four minutes. In an anechoic chamber, 83 percent heard at least one sound within four minutes.</p>
+
+      <p>It is worth saying plainly: the sound does not get louder at night. It gets more noticeable. The room gets quieter, so the contrast grows. That is the whole trick.</p>
+
+      <h3>The quietest rooms on Earth</h3>
+
+      <p>Take away even more sound, and the effect grows. In Redmond, Washington, Microsoft built a room where the background noise measures -20 dBA — twenty decibels below the threshold of hearing (0 dB SPL) — and it set the Guinness record for the quietest place on Earth in 2015. People who go inside do not hear silence. They hear their own heartbeat. Their breathing. Blood moving through the arteries near their ears. The creak of a joint when they move an arm. The room takes away the outside world, and the ear turns inward — to sounds that were always there, just buried under everything else.</p>
+
+      <figure>
+        <img src="slot2-A-dtu-anechoic.jpg" alt="The anechoic chamber at the Technical University of Denmark">
+        <figcaption>The anechoic chamber at the Technical University of Denmark (DTU). Photo: Wikimedia Commons, CC BY-SA 3.0.</figcaption>
+      </figure>
+
+      <p>In Minneapolis, there is an older room. Steven Orfield bought it cheaply — it was built in the 1960s for the appliance maker Sunbeam in Chicago — and had it trucked to Minnesota, where it sat in storage for eight years. In 2004 it set the Guinness record at -9.4 dBA. Microsoft took the record in 2015. Orfield took it back in 2021, at -24.9 dBA.</p>
+
+      <p>You have probably heard that no one can last more than 45 minutes inside. That number comes from a 2012 tabloid headline, and Orfield himself says the quote about going mad was made up. What he actually does is make journalists sit in the dark for 45 minutes before he will talk to them. The real record belongs to a New York Times writer, Caity Weaver, who spent three hours in the chamber and came out feeling as if she had been to a spa.</p>
+
+      <p>What actually happens in there is quieter than the myth, and stranger. After half an hour, Orfield — who has a mechanical heart valve — can hear it ticking, loud. After fifteen minutes, Weaver saw flashes of light in the dark. And in the silence, the brain starts to supply sound of its own — a faint ringing that grows into a steady tone, the same kind of sound the brain makes in tinnitus.</p>
+
+      <h3>An ear built to notice almost nothing</h3>
+
+      <p>Your ear is not just sensitive to faint sounds. It is sensitive to tiny differences between sounds. It can tell two sounds apart when one reaches your ears just seven millionths of a second before the other — about one six-thousandth of a single film frame — and that is how it knows where a sound is coming from. It can tell two tones apart that differ by only about 3 hertz — at 1,000 hertz, a change of just 0.3 percent. (Musicians’ ears are measurably sharper still — four to five times better at telling frequencies apart.) And it can tell two sounds apart when one is only about 1 to 2 dB SPL louder than the other.</p>
+
+      <p>So when something sounds off — a track that is a little late, a note that is a little flat, a voice that is a little too quiet — that is not you being picky. That is your ear noticing a difference it was built to catch.</p>
+
+      <h3>The takeaway</h3>
+
+      <p>The quietest sound you will ever hear is the one your own ear makes. It is not a sign that something is broken. It is what a healthy ear does when the world goes quiet.</p>
+    </div>
+
+    <div class="post-sources">
+      <h3>Sources</h3>
+      <p>Bedroom noise: WHO Guidelines for Community Noise (1999) — bedroom night average under 30 dBA; individual events under ~45 dBA. A whisper is about 30 dB SPL (NIDCD).</p>
+      <p>Heller &amp; Bergman (1953), “Tinnitus Aurium in Normally Hearing Persons,” <em>Annals of Otology, Rhinology &amp; Laryngology, 62</em>, 73–83 — 80 normal-hearing adults in a soundproof room (ambient ≤18 dB SPL); 94% heard a buzzing, ringing, or humming sound. Conclusion: tinnitus is present constantly but masked by ambient noise, which in ordinary quiet living conditions usually exceeds 35 dB SPL.</p>
+      <p>Tucker et al. (2005), <em>Otolaryngology–Head and Neck Surgery, 132</em>, 20–24, doi:10.1016/j.otohns.2005.08.016 — 120 normal-hearing young adults, 20 minutes in a sound booth; 64% heard tinnitus-like sounds, most within 4 minutes; ringing most common (57%).</p>
+      <p>Knobel &amp; Sanchez (2008) — 53 normal-hearing young adults, 4 minutes in an anechoic chamber; 83% heard at least one sound.</p>
+      <p>Tinnitus at night: the sound does not grow louder at night; it grows more noticeable as masking falls away — the standard clinical account, following from Heller &amp; Bergman’s masking finding.</p>
+      <p>Microsoft anechoic chamber, Building 87, Redmond: -20.35 dBA, Guinness World Record for the quietest place on Earth (2015). Built to test microphones, speakers, and voice-recognition systems (Cortana, Xbox, HoloLens, Surface); a six-sided box suspended on 68 vibration-damping springs. Inside, visitors report hearing their own heartbeat, breathing, blood flow, and joint creaks. Note: the record has changed hands since — Orfield retook it in 2021 (see below).</p>
+      <p>Orfield Laboratories, Minneapolis: chamber built in the 1960s by Eckel for Sunbeam (Chicago); Steven Orfield bought it, trucked it to Minnesota, stored it eight years. Guinness record 2004 at -9.4 dBA; retook the record November 19, 2021 at -24.9 dBA. The “45 minutes” story comes from a 2012 Daily Mail headline; Orfield says the “going mad” quote was invented — he makes journalists sit 45 minutes in the dark before interviews. Longest documented stay: Caity Weaver (New York Times Magazine), three hours; she saw flashes of light after about fifteen minutes and emerged feeling as if she had been to a spa. Orfield, who has a mechanical heart valve, hears it ticking loudly after half an hour. In anechoic silence, a faint ringing can grow into a steady tone — the brain supplying sound of its own.</p>
+      <p>Minimum detectable interaural time difference: trained listeners 6.9 µs, untrained 18.1 µs — Thavam &amp; Dietz (2019), <em>JASA, 145</em>(1), 458–468, doi:10.1121/1.5087566. One 24-fps film frame ≈ 0.04 s, so 6.9 µs is ~1/6,000 of a frame.</p>
+      <p>Frequency difference limen ~0.3% under controlled conditions — about 3 Hz at 1,000 Hz; confirmed in a real-world task by Ferreiro et al. (2022), <em>Front. Integr. Neurosci.</em>, doi:10.3389/fnint.2022.892951.</p>
+      <p>Musicians’ frequency discrimination 4–5× better, with sharper cochlear filters — Kakar et al. (2021), <em>J Int Adv Otol</em>, doi:10.5152/iao.2021.8477.</p>
+      <p>Intensity difference limen ~1–2 dB SPL under typical conditions (measured 1.4–1.7 dB at 1 kHz) — Ellermeier (2001); Dykstra et al. (2012), <em>PLoS ONE</em>, doi:10.1371/journal.pone.0044602.</p>
+    </div>
+
+    <footer class="post-footer">
+      <a href="../../htmls/blog.html" class="back-link">← Back to Blog List</a>
+      <a href="20261112_expectation_vs_reality_cochlear_implant.html" class="next-link">Next Article →</a>
+    </footer>
+  </article>
+
+  <div id="site-footer-placeholder"></div>
+  <div id="footer-placeholder"></div>
+
+  <script>
+      /* 💡 StructureAssest 폴더를 찾기 위해 루트 방향으로 3번 나갑니다. */
+      window.componentPath = "../../../StructureAssest/"; 
+  </script>
+  <script src="../../../StructureAssest/includes.js"></script>
+
+</body>
+</html>
